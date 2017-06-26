@@ -4,12 +4,11 @@ exports.checkLogin=function (req,res,next) {
     if(req.session.user){
         next();//可以继续向下执行
     }else {
-        res.redirect('/user/signin');//没有登录跳到登录页面
+        res.redirect('/');//没有登录跳到登录页面
     }
 };
 exports.checkNotLogin=function (req,res,next) {
     if(req.session.user){
-        req.session.error='你已经登录，请勿重复登录';
         res.redirect('/')
     }else {
         next();

@@ -1,35 +1,65 @@
-
 var express = require('express');
 var path = require('path');
+var favicon = require('serve-favicon');
 
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
+// 路由
+var index = require('./routes/index');
+var users = require('./routes/user');
+var articles = require('./routes/article');
+
+// session relative
+var session = require('express-session');// req.session 依赖cookie
+var MongooseStore = require('connect-mongo')(session);
 var app = express();
 
-app.use(express.static(path.resolve('node_modules')));//指定静态文件根目录
-app.use(express.static(path.resolve('views')));//指定静态文件根目录,返回首页的html
+// // view engine setup          this app don't need
+app.set('views', path.join(__dirname, 'views'));
+app.engine('html',require('ejs').renderFile);
+app.set('view engine', 'html');
 
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'views')));
 
+//session
+app.use(session({
+	secret: 'pipublog',
+	resave: true, // 每次响应结束后都保存下session数据
+	saveUninitialized: true, //保存新创建单位初始化的session
+	store: new MongooseStore({
+		url: require('./config').dbUrl
+	})
+}));
 
-//指定模板引擎，指定自动添加的后缀
-app.set('view engine','html');
-//指定模板的存放目录，模板根目录
-app.set('views',path.resolve('views'));
-//指定对于.html后缀的模块用ejs方法来进行渲染
-app.engine('.html',require('ejs').__express);
+app.use('/', index);
+app.use('/users', users);
+// app.use('/articles', articles);
 
+// 接口过滤
 
-var index = require('./routes/index');
-var user = require('./routes/user');
-var article = require('./routes/article');
-//当路径是以/user开头的话，会交由路由中间件来处理
-
-app.use('/',index);
-
-
-
-app.listen(8888,function(err){
-  if(err) {
-    console.log(err);
-    return;
-  }
-  console.log('app is listening 8088');
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+	var err = new Error('Not Found');
+	err.status = 404;
+	next(err);
 });
+
+// error handler
+app.use(function(err, req, res, next) {
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
+	// render the error page
+	res.status(err.status || 500);
+	res.render('error');
+});
+
+module.exports = app;
