@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人博客</title>
+    <link type="image/x-icon" rel="icon" href="img/icon.png">
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<!--登录注册页面-->
+<div class="sign">
+    <div class="up">
+        <div class="item">
+            <p>用  户  名：</p>
+            <input id="username" type="text" placeholder=" 请填写用户名" maxlength="10">
+        </div>
+        <div class="item">
+            <p>密  码：</p>
+            <input id="password" type="text" placeholder=" 数字或字母不超过10个长度">
+        </div>
+        <div class="item">
+            <p>确认密码：</p>
+            <input  id="confirm_password" type="text" placeholder=" 数字或字母不超过10个长度">
+        </div>
+        <div class="item">
+            <p>手机号码：</p>
+            <input id="phone" type="text" placeholder=" 请填写正确格式的手机号码">
+        </div>
+        <div class="item">
+            <p>性  别：</p>
+            <div class="gender">
+                <input class="sex" value="男" type="radio" name="name" checked /><span>男</span>
+                <input class="sex" value="女" type="radio" name="name" /><span>女</span>
+            </div>
+        </div>
+        <div class="item">
+            <p>头像：</p>
+            <input class="avatar" id="avatar" type="file" >
+        </div>
+        <div class="item">
+            <div id="btn" class="btn">提 交</div>
+        </div>
+    </div>
+    <div class="in">
+        <div class="item">
+            <p>用  户  名：</p>
+            <input id="username1" type="text" placeholder=" 请填写用户名" maxlength="10">
+        </div>
+        <div class="item">
+            <p>密  码：</p>
+            <input id="password1" type="text" placeholder=" 数字或字母不超过10个长度">
+        </div>
+        <div class="item">
+            <div id="btnIn" class="btn">提 交</div>
+        </div>
+    </div>
+</div>
+
+<!--导航部分-->
+<div class="header">
+    <h1><img src="img/logo.png" alt=""></h1>
+    <div class="signin">
+        <a href="#" class="sign-in">登录</a>
+        <a href="#" class="sign-up">注册</a>
+    </div>
+    <div class="nav">
+        <ul>
+            <li class="odd"><a href="#">首页</a></li>
+            <li class="even"><a href="#">移动前端</a></li>
+            <li class="odd"><a href="#">Web前端</a></li>
+            <li class="even"><a href="#">学无止境</a></li>
+            <li class="odd"><a href="#">个人日记</a></li>
+            <li class="even"><a href="#">留言板</a></li>
+        </ul>
+    </div>
+</div>
+<!--banner-->
+<div class="banner" id="banner" >
+    <ul >
+        <li><img src="img/banner1.jpg" alt=""></li>
+        <li><img src="img/banner2.jpg" alt=""></li>
+        <li><img src="img/banner1.jpg" alt=""></li>
+    </ul>
+    <a href="javascript:void(0);" class="unslider-arrow04 prev"></a>
+    <a href="javascript:void(0);" class="unslider-arrow04 next"></a>
+
+</div>
+<!--列表-->
+<div class="content">
+    <div class="list">
+        <h3>文章推荐</h3>
+        <ul>
+            <a href="">
+                <li>
+                    <div class="pic"><img src="img/pic1.jpg" alt=""></div>
+                    <div class="con">
+                        <p class="title">前端MVVM框架之“Vue.js入门篇”</p>
+                        <div>
+                            <span><img src="img/pic1.jpg" alt=""></span>
+                            <i class="name">姓名</i><i>发布时间：</i><i class="time"> 2016-12-11 21:37:59</i><i>分类：</i><i class="type">Web前端</i>
+                        </div>
+                        <p class="text">前言：新项目忙了差不多两个月时间，现在终于能闲下来与大家一起学习、分享啦！废话不多说，进入今天的主题:“前端主流MVVM框架--后起之秀Vue.js”或许有人会疑问？咦，为什么介绍Vue.js呢? 我只晓得Angular、React。Vue.js是什么鬼？Vue到底有着什么样的魔力呢？答：因为我是Vue粉啊！哈哈。。。说这话，我估计等下会被Angular、React那群人会查水表！(┳_┳)... </p>
+                    </div>
+                </li>
+            </a>
+            <a href="#">
+                <li>
+                    <div class="pic"><img src="img/pic1.jpg" alt=""></div>
+                    <div class="con">
+                        <p class="title">前端MVVM框架之“Vue.js入门篇”</p>
+                        <div>
+                            <span><img src="img/pic1.jpg" alt=""></span>
+                            <i class="name">姓名</i><i>发布时间：</i><i class="time"> 2016-12-11 21:37:59</i><i>分类：</i><i class="type">Web前端</i>
+                        </div>
+                        <p class="text">前言：新项目忙了差不多两个月时间，现在终于能闲下来与大家一起学习、分享啦！废话不多说，进入今天的主题:“前端主流MVVM框架--后起之秀Vue.js”或许有人会疑问？咦，为什么介绍Vue.js呢? 我只晓得Angular、React。Vue.js是什么鬼？Vue到底有着什么样的魔力呢？答：因为我是Vue粉啊！哈哈。。。说这话，我估计等下会被Angular、React那群人会查水表！(┳_┳)... </p>
+                    </div>
+                </li>
+            </a>
+
+        </ul>
+    </div>
+
+    <div class="right">
+        <h3>站内搜索</h3>
+        <div class="search-wrap">
+            <form >
+                <input type="text" class="search-value" placeholder="请输入搜索内容">
+                <input class="search-btn" type="submit" value="">
+            </form>
+        </div>
+    </div>
+    <div class="right">
+        <h3>最新留言</h3>
+        <div class="right-con">
+            <ul>
+                <li>
+                    <div class="pic"><img src="img/icon.png" alt=""></div>
+                    <div class="right-list">
+                        <p class="one"> <b>哈利波特</b> <i>1月1日</i></p>
+                        <p class="right-text">对网站整体风格进行改版，并对代码进行重新优化构建。增加网站站内搜索功能！</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><img src="img/icon.png" alt=""></div>
+                    <div class="right-list">
+                        <p class="one"> <b>哈利波特</b> <i>1月1日</i></p>
+                        <p class="right-text">对网站整体风格进行改版，并对代码进行重新优化构建。增加网站站内搜索功能！</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/unslider.min.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

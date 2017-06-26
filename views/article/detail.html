@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人博客</title>
+    <link type="image/x-icon" rel="icon" href="../img/icon.png">
+    <link rel="stylesheet" href="../css/reset.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+
+<!--登录注册页面-->
+<div class="sign">
+    <div class="up">
+        <div class="item">
+            <p>用  户  名：</p>
+            <input id="username" type="text" placeholder=" 请填写用户名" maxlength="10">
+        </div>
+        <div class="item">
+            <p>密  码：</p>
+            <input id="password" type="text" placeholder=" 数字或字母不超过10个长度">
+        </div>
+        <div class="item">
+            <p>确认密码：</p>
+            <input  id="confirm_password" type="text" placeholder=" 数字或字母不超过10个长度">
+        </div>
+        <div class="item">
+            <p>手机号码：</p>
+            <input id="phone" type="text" placeholder=" 请填写正确格式的手机号码">
+        </div>
+        <div class="item">
+            <p>性  别：</p>
+            <div class="gender">
+                <input class="sex" value="男" type="radio" name="name" checked /><span>男</span>
+                <input class="sex" value="女" type="radio" name="name" /><span>女</span>
+            </div>
+        </div>
+        <div class="item">
+            <p>头像：</p>
+            <input class="avatar" id="avatar" type="file" >
+        </div>
+        <div class="item">
+            <div id="btn" class="btn">提 交</div>
+        </div>
+    </div>
+    <div class="in">
+        <div class="item">
+            <p>用  户  名：</p>
+            <input id="username1" type="text" placeholder=" 请填写用户名" maxlength="10">
+        </div>
+        <div class="item">
+            <p>密  码：</p>
+            <input id="password1" type="text" placeholder=" 数字或字母不超过10个长度">
+        </div>
+        <div class="item">
+            <div id="btnIn" class="btn">提 交</div>
+        </div>
+    </div>
+</div>
+
+<!--导航部分-->
+<div class="header">
+    <h1><img src="../img/logo.png" alt=""></h1>
+    <div class="signin">
+        <a href="#" class="sign-in">登录</a>
+        <a href="#" class="sign-up">注册</a>
+    </div>
+    <div class="nav">
+        <ul>
+            <li class="odd"><a href="#">首页</a></li>
+            <li class="even"><a href="#">移动前端</a></li>
+            <li class="odd"><a href="#">Web前端</a></li>
+            <li class="even"><a href="#">学无止境</a></li>
+            <li class="odd"><a href="#">个人日记</a></li>
+            <li class="even"><a href="#">留言板</a></li>
+        </ul>
+    </div>
+</div>
+<!--banner-->
+<div class="banner" id="banner" >
+    <ul >
+        <li><img src="../img/banner1.jpg" alt=""></li>
+        <li><img src="../img/banner2.jpg" alt=""></li>
+        <li><img src="../img/banner1.jpg" alt=""></li>
+    </ul>
+    <a href="javascript:void(0);" class="unslider-arrow04 prev"></a>
+    <a href="javascript:void(0);" class="unslider-arrow04 next"></a>
+
+</div>
+<!--详情-->
+<div class="content">
+    <div class="detail-list">
+        <h2>前端MVVM框架之“Vue.js入门篇”</h2>
+        <div class="detail-time">
+            <i>编辑时间：</i><i class="time"> 2016-12-11</i><i>浏览量：</i><i class="number">624</i><i>作者：</i><i class="author">哈利波特</i>
+        </div>
+        <p>    前言：新项目忙了差不多两个月时间，现在终于能闲下来与大家一起学习、分享啦！</br>
+            废话不多说，进入今天的主题:“前端主流MVVM框架--后起之秀Vue.js”</br>
+            或许有人会疑问？咦，为什么介绍Vue.js呢? 我只晓得Angular、React。Vue.js是什么鬼？Vue到底有着什么样的魔力呢？</br>
+            答：因为我是Vue粉啊！哈哈。。。说这话，我估计等下会被Angular、React那群人会查水表！(┳_┳)...</br>
+            如果有关注过前端圈的朋友，我相信大家肯定看过一篇文章“在 2016 年学 JavaScript 是一种什么样的体验?”</br>
+            相信看过这篇文章的朋友们，都会有感而发:</br>
+            1、尼玛，2016这一年，学习前端之路“痛并快乐着”!</br>
+            2、我觉得文章标题应该修改为“2016学前端从入门到放弃”</br>
+            3、尼玛，我刚学会了jQuery的各种奇淫技巧。又蹦出这么多新技术让我学!(Webapck、ES6、TypeScript...) ( >﹏<。)～呜呜呜</br>
+            ...
+            我也觉得：2016的前端真的变化了很多，就好像发动一场革命一样。你需要学习各种新技术Vue2.0、React、Angular2.0、Webapck、ES6... 才能驾驭好项目。</br>
+            扯这么多，跟我们今天的主题有什么关系呢？别急，我们接着往下看：</p>
+    </div>
+
+    <div class="right">
+        <h3>站内搜索</h3>
+        <div class="search-wrap">
+            <form >
+                <input type="text" class="search-value" placeholder="请输入搜索内容">
+                <input class="search-btn" type="submit" value="">
+            </form>
+        </div>
+    </div>
+    <div class="right">
+        <h3>最新留言</h3>
+        <div class="right-con">
+            <ul>
+                <li>
+                    <div class="pic"><img src="../img/icon.png" alt=""></div>
+                    <div class="right-list">
+                        <p class="one"> <b>哈利波特</b> <i>1月1日</i></p>
+                        <p class="right-text">对网站整体风格进行改版，并对代码进行重新优化构建。增加网站站内搜索功能！</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><img src="../img/icon.png" alt=""></div>
+                    <div class="right-list">
+                        <p class="one"> <b>哈利波特</b> <i>1月1日</i></p>
+                        <p class="right-text">对网站整体风格进行改版，并对代码进行重新优化构建。增加网站站内搜索功能！</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../js/unslider.min.js"></script>
+<script src="../js/index.js"></script>
+
+</body>
+</html>
