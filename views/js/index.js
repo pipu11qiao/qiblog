@@ -162,8 +162,8 @@ var vm=new Vue({
       var me=this;
       $.ajax({
         url: '/users/signup',
-        data: data,
-        datatype: 'json',
+        data:JSON.stringify(data),
+        contentType: 'application/json',
         type: 'post',
         dataType: 'json',
         success: function (data) {
@@ -193,8 +193,8 @@ var vm=new Vue({
 			};
 			$.ajax({
 				url:'/users/signin',
-				data:ajaxData,
-				datatype: 'json',
+				data:JSON.stringify(ajaxData),
+				contentType: 'application/json',
 				type:'post',
 				success:function (data) {
 					if(data.code===400){
