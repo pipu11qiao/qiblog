@@ -19,15 +19,15 @@
             </div>
             <div class="item">
                 <p>密  码：</p>
-                <input id="password" type="password" placeholder=" 数字或字母不超过10个长度" value="111">
+                <input id="password" type="password" placeholder=" 数字或字母不超过10个长度" >
             </div>
             <div class="item">
                 <p>确认密码：</p>
-                <input  id="repassword" type="password"  placeholder=" 数字或字母不超过10个长度" value="111">
+                <input  id="repassword" type="password"  placeholder=" 数字或字母不超过10个长度" >
             </div>
             <div class="item">
                 <p>邮箱：</p>
-                <input id="email" type="email"  placeholder=" 请填写正确格式的邮箱" value="111@2.com">
+                <input id="email" type="email"  placeholder=" 请填写正确格式的邮箱" >
             </div>
             <div class="item">
                 <p>性  别：</p>
@@ -62,7 +62,7 @@
             <div class="after-sign" v-if="isSign" v-cloak="">
                 <em class="avatar"><img :src="avatar" alt=""></em>
                 <span>欢迎：{{username}}</span>
-                <a href="#">退出</a>
+                <a href="#" @click="signOut">退出</a>
             </div>
             <div class="signin" v-show="!isSign" v-cloak="">
                 <a href="#" class="sign-in" @click="signInShow"> 登录</a>
@@ -97,16 +97,16 @@
 
     <!--列表-->
     <div class="content">
-        <div class="list">
-            <h3>文章推荐 <a href="">发表文章</a></h3>
+        <div class="list"  v-show="!isSign || !isArticle">
+            <h3>文章推荐 <a href="javascript:;" v-if="isSign" @click="add">发表文章</a></h3>
             <ul>
                 <a href="">
                     <li>
-                        <div class="pic"><img src="img/pic1.jpg" alt=""></div>
+                        <div class="pic"><img src="articleImg/img1.png" alt=""></div>
                         <div class="con">
                             <p class="title">前端MVVM框架之“Vue.js入门篇”</p>
                             <div>
-                                <span><img src="img/pic1.jpg" alt=""></span>
+                                <span><img src="articleImg/img1.png" alt=""></span>
                                 <i class="name">姓名</i><i>发布时间：</i><i class="time"> 2016-12-11 21:37:59</i><i>分类：</i><i class="type">Web前端</i>
                             </div>
                             <p class="text">前言：新项目忙了差不多两个月时间，现在终于能闲下来与大家一起学习、分享啦！废话不多说，进入今天的主题:“前端主流MVVM框架--后起之秀Vue.js”或许有人会疑问？咦，为什么介绍Vue.js呢? 我只晓得Angular、React。Vue.js是什么鬼？Vue到底有着什么样的魔力呢？答：因为我是Vue粉啊！哈哈。。。说这话，我估计等下会被Angular、React那群人会查水表！(┳_┳)... </p>
@@ -115,11 +115,11 @@
                 </a>
                 <a href="#">
                     <li>
-                        <div class="pic"><img src="img/pic1.jpg" alt=""></div>
+                        <div class="pic"><img src="articleImg/img2.png" alt=""></div>
                         <div class="con">
                             <p class="title">前端MVVM框架之“Vue.js入门篇”</p>
                             <div>
-                                <span><img src="img/pic1.jpg" alt=""></span>
+                                <span><img src="articleImg/img2.png" alt=""></span>
                                 <i class="name">姓名</i><i>发布时间：</i><i class="time"> 2016-12-11 21:37:59</i><i>分类：</i><i class="type">Web前端</i>
                             </div>
                             <p class="text">前言：新项目忙了差不多两个月时间，现在终于能闲下来与大家一起学习、分享啦！废话不多说，进入今天的主题:“前端主流MVVM框架--后起之秀Vue.js”或许有人会疑问？咦，为什么介绍Vue.js呢? 我只晓得Angular、React。Vue.js是什么鬼？Vue到底有着什么样的魔力呢？答：因为我是Vue粉啊！哈哈。。。说这话，我估计等下会被Angular、React那群人会查水表！(┳_┳)... </p>
@@ -128,6 +128,34 @@
                 </a>
 
             </ul>
+        </div>
+        <!--发表文章-->
+        <div class="add" v-show="isSign && isArticle" v-cloak="">
+            <div class="add-item">
+                <p>标题</p>
+                <div >
+                    <input type="text" name="title" id="title">
+                </div>
+            </div>
+            <div class="add-item">
+                <p>正文</p>
+                <div >
+                <textarea type="text" name="content" id="content">
+
+                </textarea>
+                </div>
+            </div>
+            <div class="add-item last">
+                <p>分类</p>
+                <div >
+                    <select name="type" id="type">
+                        <option value="">移动前端</option>
+                        <option value="">Web前端</option>
+                        <option value="">学无止境</option>
+                    </select>
+                </div>
+            </div>
+
         </div>
 
         <div class="right">
@@ -140,7 +168,7 @@
             </div>
         </div>
         <div class="right">
-            <h3>最新留言 <a href="">发布留言</a> </h3>
+            <h3>最新留言 <a href="javascript:;" v-if="isSign">发布留言</a> </h3>
             <div class="right-con">
                 <ul>
                     <li>

@@ -4,63 +4,7 @@ var user = {
 		this.bind();
 	},
 	bind: function () {
-      /*注册登录*/
-		// $('.sign-in,.sign-up').click(function () {
-		// 	$('.sign').show();
-		// 	$('.' + this.className.split('-')[1]).show();
-		// });
 
-
-		// $('.sign').click(function (event) {
-		// 	if (event.target.className === 'sign') {
-		// 		$(this).hide();
-		// 		$('.in').hide();
-		// 		$('.up').hide();
-		// 	}
-		// });
-		$('#btn').click(function () {
-			var username = $('#username').val();
-			var email = $('#email').val();
-			var password = $('#password').val();
-			var repassword = $('#repassword').val();
-			var gender = "";
-			if (!username) {
-				alert('请填写姓名');
-				return;
-			}
-			if (!/[0-9A-Za-z]\w+@\w+\.[a-z0-9A-Z]+$/.test(email)) {
-				alert('请填写正确手机号码');
-				return;
-			}
-			if (!/^[0-9a-zA-Z]{1,10}$/.test(password)) {
-				alert('必须输入数字或者字母');
-			}
-			if (password != repassword) {
-				alert('密码请保持一致');
-				return;
-			}
-			$('input[type=radio]')[0].checked ? gender = 'male' : gender = 'female';
-			var data = {
-				username: username,
-				email: email,
-				password: password,
-				gender: gender
-			};
-			$.ajax({
-				url: '/users/signup',
-				data: data,
-        type: 'post',
-        dataType: 'json',
-        success: function (data) {
-					console.log(data);
-					alert(data.data);
-        },
-        error: function (data) {
-
-        }
-
-			});
-		})
 	}
 };
 // 轮播
@@ -108,9 +52,19 @@ var vm=new Vue({
 	el:'#wrapper',
 	data:{
 		isSign:false,
+		isArticle:false,
 		username:'',
 		avatar:'',
 	},
+	created:function () {
+		var data;
+		if(sessionStorage.data){
+			data = JSON.parse(sessionStorage.data);
+			this.isSign=true;
+      this.username=data.username;
+      this.avatar=data.avatar;
+		}
+  },
 	methods:{
 		//注册登录弹窗
 		sign:function (event) {
@@ -174,9 +128,10 @@ var vm=new Vue({
         		me.isSign=true;
             $('.sign').hide();
             $('.up').hide();
-            console.log(this.isSign)
+            me.username=data.data.username;
+            me.avatar=data.data.avatar;
+            sessionStorage.data=JSON.stringify(data.data);
 					}
-          console.log(data);
         },
         error: function (data) {
 
@@ -206,14 +161,24 @@ var vm=new Vue({
             $('.in').hide();
             me.username=data.data.username;
             me.avatar=data.data.avatar;
+            sessionStorage.data=JSON.stringify(data.data);
 					}
-					console.log(data);
         }
 			})
+    },
+    //退出
+		signOut:function () {
+			sessionStorage.removeItem('data');
+			this.isSign=false;
+			this.isArticle=false;
+    },
+		//发表文章
+		add:function () {
+			console.log(this.isSign);
+      this.isArticle=true;
+			$('.list').hide();
+			$('.add').show();
     }
-
-
-
 	}
 
 
