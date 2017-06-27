@@ -59,9 +59,9 @@
     <div class="header-wrapper">
         <div class="header">
             <h1><img src="img/logo.png" alt=""></h1>
-            <div class="after-sign" v-show="isSign" v-cloak="">
-                <em class="avatar"><img src="img/icon.png" alt=""></em>
-                <span>欢迎：XXX</span>
+            <div class="after-sign" v-if="isSign" v-cloak="">
+                <em class="avatar"><img :src="avatar" alt=""></em>
+                <span>欢迎：{{username}}</span>
                 <a href="#">退出</a>
             </div>
             <div class="signin" v-show="!isSign" v-cloak="">

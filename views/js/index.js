@@ -107,7 +107,9 @@ app.init();
 var vm=new Vue({
 	el:'#wrapper',
 	data:{
-		isSign:false
+		isSign:false,
+		username:'',
+		avatar:'',
 	},
 	methods:{
 		//注册登录弹窗
@@ -157,9 +159,11 @@ var vm=new Vue({
         password: password,
         gender: gender
       };
+      var me=this;
       $.ajax({
         url: '/users/signup',
         data: data,
+        datatype: 'json',
         type: 'post',
         dataType: 'json',
         success: function (data) {
@@ -167,7 +171,7 @@ var vm=new Vue({
             alert(data.data);
 					}else{
         		alert("注册成功");
-        		this.isSign=true;
+        		me.isSign=true;
             $('.sign').hide();
             $('.up').hide();
             console.log(this.isSign)
@@ -182,6 +186,7 @@ var vm=new Vue({
     },
     //用户登录
 		signIn:function () {
+			var me=this;
 			var ajaxData={
 				username:$('#username1').val(),
 				password:$('#password1').val()
@@ -196,9 +201,11 @@ var vm=new Vue({
 						alert(data.data);
 					}else {
 						alert("登录成功");
-            this.isSign=true;
+            me.isSign=true;
             $('.sign').hide();
             $('.in').hide();
+            me.username=data.data.username;
+            me.avatar=data.data.avatar;
 					}
 					console.log(data);
         }
