@@ -9,10 +9,7 @@ var UserSchema = new mongoose.Schema({
 	email: String,
 	avatar: String,
 	gender: String,
-	createAt: {
-		type: Date,
-		default: Date.now
-	}
+	createTime: Number
 });
 exports.User = mongoose.model('User', UserSchema);
 
@@ -20,9 +17,14 @@ exports.User = mongoose.model('User', UserSchema);
 var ArticleSchema = new mongoose.Schema({
 	title: String,
 	content: {type: String},
+	type: String,
 	createAt: {
 		type: Date,
-		default: new Date
+		default: Date.now()
+	},
+	updateAt: {
+		type: Date,
+		default: Date.now()
 	},
 	user: {
 		type: ObjectId,

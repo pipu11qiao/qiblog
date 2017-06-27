@@ -29,17 +29,17 @@ router.post('/signup', function (req, res) {
 		if (err) {//如果查询过程出错了，则error有值
 			res.send(Send.s5(err));
 		} else {
-
 			if (oldUser) {
 				res.send(Send.s4('用户名已经被占用，请改个别的名字吧,比如' + user.username + '200'));
 			} else {
+				user.createTime = Date.now();
 				User.create(user, function (err, doc) {
 					if (err) {
 						res.send(Send.s5(err));
 					} else {
 						//把保存后的对象作为req.session属性,session对象是在服务器端内存里放置
 						req.session.user = doc;
-						res.send(Send.s2(getDefineObj(doc,['username','avatar','createAt'])));
+						res.send(Send.s2(getDefineObj(doc,['username','avatar','createTime'])));
 					}
 				})
 			}
@@ -57,7 +57,7 @@ router.post('/signin',function (req, res) {
 		} else {
 			if (doc) {
 				req.session.user = doc;
-				res.send(Send.s2(getDefineObj(doc,['username','avatar','createAt'])));
+				res.send(Send.s2(getDefineObj(doc,['username','avatar','createTime'])));
 			} else {
 				res.send(Send.s4('用户名或密码不正确'));
 			}
