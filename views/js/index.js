@@ -52,7 +52,7 @@ var vm=new Vue({
 	el:'#wrapper',
 	data:{
 		isSign:false,
-		isArticle:false,
+		curView:1,
 		username:'',
 		avatar:'',
 	},
@@ -130,6 +130,7 @@ var vm=new Vue({
             $('.up').hide();
             me.username=data.data.username;
             me.avatar=data.data.avatar;
+            me.curView=1;
             sessionStorage.data=JSON.stringify(data.data);
 					}
         },
@@ -161,6 +162,7 @@ var vm=new Vue({
             $('.in').hide();
             me.username=data.data.username;
             me.avatar=data.data.avatar;
+            me.curView=1;
             sessionStorage.data=JSON.stringify(data.data);
 					}
         }
@@ -170,14 +172,21 @@ var vm=new Vue({
 		signOut:function () {
 			sessionStorage.removeItem('data');
 			this.isSign=false;
-			this.isArticle=false;
+      this.curView=1;
     },
 		//发表文章
 		add:function () {
-			console.log(this.isSign);
-      this.isArticle=true;
+      this.curView=2;
 			$('.list').hide();
+      $('.detail-list').hide();
 			$('.add').show();
+    },
+		//文章详情页面
+    detail:function () {
+      this.curView=3;
+      $('.list').hide();
+      $('.add').hide();
+      $('.detail-list').show();
     }
 	}
 

@@ -86,8 +86,8 @@
         <div class="banner" id="banner" >
             <ul >
                 <li><img src="img/banner1.jpg" alt=""></li>
-                <li><img src="img/banner2.jpg" alt=""></li>
-                <li><img src="img/banner1.jpg" alt=""></li>
+                <!--<li><img src="img/banner2.jpg" alt=""></li>-->
+                <!--<li><img src="img/banner1.jpg" alt=""></li>-->
             </ul>
             <a href="javascript:void(0);" class="unslider-arrow04 prev"></a>
             <a href="javascript:void(0);" class="unslider-arrow04 next"></a>
@@ -97,13 +97,13 @@
 
     <!--列表-->
     <div class="content">
-        <div class="list"  v-show="!isSign || !isArticle">
+        <div class="list"  v-show="curView===1">
             <h3>文章推荐 <a href="javascript:;" v-if="isSign" @click="add">发表文章</a></h3>
             <ul>
-                <a href="">
+                <a href="javascript:;">
                     <li>
                         <div class="pic"><img src="articleImg/img1.png" alt=""></div>
-                        <div class="con">
+                        <div class="con" @click="detail">
                             <p class="title">前端MVVM框架之“Vue.js入门篇”</p>
                             <div>
                                 <span><img src="articleImg/img1.png" alt=""></span>
@@ -130,7 +130,7 @@
             </ul>
         </div>
         <!--发表文章-->
-        <div class="add" v-show="isSign && isArticle" v-cloak="">
+        <div class="add" v-show="curView===2" v-cloak="">
             <div class="add-item">
                 <p>标题</p>
                 <div >
@@ -155,7 +155,31 @@
                     </select>
                 </div>
             </div>
+            <button class="articleSubmit">提交</button>
 
+        </div>
+        <!--详情页面-->
+        <div class="detail-list" v-show="curView===3" v-cloak="">
+            <h2>前端MVVM框架之“Vue.js入门篇”</h2>
+            <div class="detail-time">
+                <i>编辑时间：</i><i class="time"> 2016-12-11</i><i>浏览量：</i><i class="number">624</i><i>作者：</i><i class="author">哈利波特</i>
+            </div>
+            <p>    前言：新项目忙了差不多两个月时间，现在终于能闲下来与大家一起学习、分享啦！</br>
+                废话不多说，进入今天的主题:“前端主流MVVM框架--后起之秀Vue.js”</br>
+                或许有人会疑问？咦，为什么介绍Vue.js呢? 我只晓得Angular、React。Vue.js是什么鬼？Vue到底有着什么样的魔力呢？</br>
+                答：因为我是Vue粉啊！哈哈。。。说这话，我估计等下会被Angular、React那群人会查水表！(┳_┳)...</br>
+                如果有关注过前端圈的朋友，我相信大家肯定看过一篇文章“在 2016 年学 JavaScript 是一种什么样的体验?”</br>
+                相信看过这篇文章的朋友们，都会有感而发:</br>
+                1、尼玛，2016这一年，学习前端之路“痛并快乐着”!</br>
+                2、我觉得文章标题应该修改为“2016学前端从入门到放弃”</br>
+                3、尼玛，我刚学会了jQuery的各种奇淫技巧。又蹦出这么多新技术让我学!(Webapck、ES6、TypeScript...) ( >﹏<。)～呜呜呜</br>
+                ...
+                我也觉得：2016的前端真的变化了很多，就好像发动一场革命一样。你需要学习各种新技术Vue2.0、React、Angular2.0、Webapck、ES6... 才能驾驭好项目。</br>
+                扯这么多，跟我们今天的主题有什么关系呢？别急，我们接着往下看：</p>
+            <div class="modify-btn">
+                <button class="modify">修改</button>
+                <button class="delete">删除</button>
+            </div>
         </div>
 
         <div class="right">

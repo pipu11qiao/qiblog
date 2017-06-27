@@ -470,5 +470,41 @@ body{
 .add .add-item select option{
     height: 30px;
 }
-
+.add .articleSubmit{
+    width: 60px;
+    height: 30px;
+    background: rgb(231, 231, 233);
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+    margin-left: 410px;
+    cursor: pointer;
+}
+.add .articleSubmit:hover{
+    background: rgba(119, 119, 119, 0.45);
+}
+.modify-btn{
+    padding: 20px 20px 20px 360px;
+}
+.modify-btn button{
+    width: 60px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    border: 1px solid #ddd;
+}
+.modify-btn button.modify{
+    margin-right: 20px;
+    background: rgb(255, 224, 99);
+}
+.modify-btn button.modify:hover{
+    background: rgb(255, 168, 12);
+}
+.modify-btn button.delete{
+    background: rgb(255, 128, 128);
+}
+.modify-btn button.delete:hover{
+    background: rgb(255, 79, 18);
+}
 
