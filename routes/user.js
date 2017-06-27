@@ -19,6 +19,7 @@ var getDefineObj = util.getDefineObj;
  * 4. 引入User模型，然后把此对象保存到数据库中
  */
 //处理注册用户时的表单提交
+
 router.post('/signup', function (req, res) {
 	//取得请求体对象
 	var user = req.body;
@@ -48,7 +49,6 @@ router.post('/signup', function (req, res) {
 //登录
 
 router.post('/signin',function (req, res) {
-
 	var user = req.body;
 	user.password = md5(user.password);
 	User.findOne(user, function (err, doc) {
