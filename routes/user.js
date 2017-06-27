@@ -29,7 +29,7 @@ router.post('/signup', function (req, res) {
 		} else {
 
 			if (oldUser) {
-				res.send(Send.s2('用户名已经被占用，请改个别的名字吧,比如' + user.username + '200'));
+				res.send(Send.s4('用户名已经被占用，请改个别的名字吧,比如' + user.username + '200'));
 			} else {
 				User.create(user, function (err, doc) {
 					if (err) {
@@ -54,20 +54,17 @@ router.post('/signin',function (req, res) {
 		} else {
 			if (doc) {
 				req.session.user = doc;
-				res.redirect('/');
-			} else {
 				res.send(Send.s2(doc));
-				req.session.error = '用户名或密码不正确';
-				res.redirect('back');
+			} else {
+				res.send(Send.s4('用户名或密码不正确'));
 			}
 		}
 	});
 });
 //退出登录
-router.get('/signout', auth.checkLogin, function (req, res) {
+router.get('/signout', function (req, res,next) {
 	req.session.user = null;
-	res.redirect('/');
-
+	res.send(Send.s2('ok'));
 });
 
 

@@ -9,6 +9,9 @@ var Send = {
 	s2:function (data) {
 		return this.all(200,data);
 	},
+	s4:function (data) {
+		return this.all(400,data);
+	},
 	s5: function (data) {
 		return this.all(500,data);
 	}
