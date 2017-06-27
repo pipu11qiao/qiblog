@@ -20,3 +20,10 @@ exports.Send = Send;
 exports.md5 = function (input) {
 	return require('crypto').createHash('md5').update(input).digest('hex');
 };
+exports.getDefineObj = function (obj,properties) {
+	var curObj = {};
+	properties.forEach(function (item) {
+		curObj[item] = obj[item];
+	});
+	return curObj;
+};

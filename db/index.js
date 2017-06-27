@@ -30,3 +30,4 @@ var ArticleSchema = new mongoose.Schema({
 	}
 });
 exports.Article = mongoose.model('Article', ArticleSchema);
+

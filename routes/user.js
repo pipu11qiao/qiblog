@@ -9,6 +9,7 @@ var router = express.Router();
 var util = require('../util');
 var Send = util.Send;
 var md5 = util.md5;
+var getDefineObj = util.getDefineObj;
 //注册 /user/signup
 //路径一定以/开头 模板路径一定不要以/开头
 /**
@@ -37,7 +38,7 @@ router.post('/signup', function (req, res) {
 					} else {
 						//把保存后的对象作为req.session属性,session对象是在服务器端内存里放置
 						req.session.user = doc;
-						res.send(Send.s2(doc));
+						res.send(Send.s2(getDefineObj(doc,['username','avatar','createAt'])));
 					}
 				})
 			}
@@ -54,7 +55,7 @@ router.post('/signin',function (req, res) {
 		} else {
 			if (doc) {
 				req.session.user = doc;
-				res.send(Send.s2(doc));
+				res.send(Send.s2(getDefineObj(doc,['username','avatar','createAt'])));
 			} else {
 				res.send(Send.s4('用户名或密码不正确'));
 			}
