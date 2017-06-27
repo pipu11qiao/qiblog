@@ -48,7 +48,9 @@ router.post('/signup', function (req, res) {
 //登录
 
 router.post('/signin',function (req, res) {
+
 	var user = req.body;
+	user.password = md5(user.password);
 	User.findOne(user, function (err, doc) {
 		if (err) {
 			res.send(Send.s5(err));

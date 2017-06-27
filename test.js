@@ -1,2 +1,2 @@
-var num = Math.pow(2,16);
-console.log(num);
+var obj = {name: 'www'};
+console.log(JSON.stringify(obj));
