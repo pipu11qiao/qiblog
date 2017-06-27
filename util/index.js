@@ -27,3 +27,6 @@ exports.getDefineObj = function (obj,properties) {
 	});
 	return curObj;
 };
+exports.Random = function () {
+
+};

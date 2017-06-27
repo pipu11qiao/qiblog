@@ -1,7 +1,7 @@
 
 var express = require('express');
 //导入操作数据库的用户集合的模型
-var User = require('../db').User;
+var Article = require('../db').Article;
 var auth = require('../auth');
 // var multer=require('multer');
 // var upload=multer({dest:'public/'});
@@ -9,8 +9,10 @@ var auth = require('../auth');
 var router = express.Router();
 var util = require('../util');
 var Send = util.Send;
-var md5 = util.md5;
-var getDefineObj = util.getDefineObj;
+var Random = util.Random;
+// var md5 = util.md5;
+// var getDefineObj = util.getDefineObj;
+
 //注册 /user/signup
 //路径一定以/开头 模板路径一定不要以/开头
 /**
@@ -19,10 +21,14 @@ var getDefineObj = util.getDefineObj;
  * 3. 在/signup里，接收传过来的表单数据，通过body-parser中间件来将请求体放在 req.body上。
  * 4. 引入User模型，然后把此对象保存到数据库中
  */
-//处理注册用户时的表单提交
 
-router.post('/signup', function (req, res) {
+//处理注册用户时的表单提交
+router.post('/add', function (req, res) {
 	//取得请求体对象
+	var curArticle = req.body();
+	curArticle.createTime = Date.now();
+	curArticle.updateTime = Date.now();
+
 	var user = req.body;
 	user.password = md5(user.password);
 	user.avatar = 'https://www.gravatar.com/avatar/' + md5(user.email) + '?s=200';
@@ -46,29 +52,6 @@ router.post('/signup', function (req, res) {
 			}
 		}
 	})
-});
-//登录
-
-router.post('/signin',function (req, res) {
-	var user = req.body;
-	user.password = md5(user.password);
-	User.findOne(user, function (err, doc) {
-		if (err) {
-			res.send(Send.s5(err));
-		} else {
-			if (doc) {
-				req.session.user = doc;
-				res.send(Send.s2(getDefineObj(doc,['username','avatar','createAt'])));
-			} else {
-				res.send(Send.s4('用户名或密码不正确'));
-			}
-		}
-	});
-});
-//退出登录
-router.get('/signout', function (req, res,next) {
-	req.session.user = null;
-	res.send(Send.s2('ok'));
 });
 
 

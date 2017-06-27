@@ -11,25 +11,20 @@ var UserSchema = new mongoose.Schema({
 	gender: String,
 	createTime: Number
 });
-exports.User = mongoose.model('User', UserSchema);
+exports.User = mongoose.model('users', UserSchema);
 
 // 文章模块
 var ArticleSchema = new mongoose.Schema({
 	title: String,
 	content: {type: String},
 	type: String,
-	createAt: {
-		type: Date,
-		default: Date.now()
-	},
-	updateAt: {
-		type: Date,
-		default: Date.now()
-	},
+	decorate:String,
+	createTime: Number,
+	updateTime: Number,
 	user: {
 		type: ObjectId,
-		ref: 'User'
+		ref: 'users'
 	}
 });
-exports.Article = mongoose.model('Article', ArticleSchema);
+exports.Article = mongoose.model('articles', ArticleSchema);
 
