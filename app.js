@@ -41,7 +41,7 @@ app.use(session({
 
 app.use('/', index);
 app.use('/users', users);
-// app.use('/articles', articles);
+app.use('/articles', articles);
 
 // 接口过滤
 

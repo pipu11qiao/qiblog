@@ -17,7 +17,7 @@ exports.User = mongoose.model('users', UserSchema);
 var ArticleSchema = new mongoose.Schema({
 	title: String,
 	content: {type: String},
-	type: String,
+	type: Number,
 	decorate:String,
 	createTime: Number,
 	updateTime: Number,

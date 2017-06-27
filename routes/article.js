@@ -9,7 +9,9 @@ var auth = require('../auth');
 var router = express.Router();
 var util = require('../util');
 var Send = util.Send;
-var Random = util.Random;
+
+var mardown = require('markdown').markdown;
+
 // var md5 = util.md5;
 // var getDefineObj = util.getDefineObj;
 
@@ -25,34 +27,21 @@ var Random = util.Random;
 //处理注册用户时的表单提交
 router.post('/add', function (req, res) {
 	//取得请求体对象
-	var curArticle = req.body();
+	var curArticle = req.body;
+	curArticle.content = mardown.toHTML(curArticle.content);
 	curArticle.createTime = Date.now();
 	curArticle.updateTime = Date.now();
-
-	var user = req.body;
-	user.password = md5(user.password);
-	user.avatar = 'https://www.gravatar.com/avatar/' + md5(user.email) + '?s=200';
-	User.findOne({username: user.username}, function (err, oldUser) {
-		if (err) {//如果查询过程出错了，则error有值
+	curArticle.decorate = getDecorate();
+	Article.create(curArticle, function (err, doc) {
+		if (err) {
 			res.send(Send.s5(err));
 		} else {
-
-			if (oldUser) {
-				res.send(Send.s4('用户名已经被占用，请改个别的名字吧,比如' + user.username + '200'));
-			} else {
-				User.create(user, function (err, doc) {
-					if (err) {
-						res.send(Send.s5(err));
-					} else {
-						//把保存后的对象作为req.session属性,session对象是在服务器端内存里放置
-						req.session.user = doc;
-						res.send(Send.s2(getDefineObj(doc,['username','avatar','createAt'])));
-					}
-				})
-			}
+			//把保存后的对象作为req.session属性,session对象是在服务器端内存里放置
+			res.send(Send.s2(doc));
 		}
 	})
 });
-
-
+function getDecorate() {
+	return 'articleImg/img' + Math.ceil(Math.random() * 7) + '.png';
+}
 module.exports = router;
