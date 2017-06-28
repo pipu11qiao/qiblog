@@ -101,15 +101,15 @@
             <h3>文章推荐 <a href="javascript:;" v-if="isSign" @click="add">发表文章</a></h3>
             <ul>
                 <a href="javascript:;">
-                    <li>
-                        <div class="pic"><img src="articleImg/img1.png" alt=""></div>
+                    <li v-for="article in articles ">
+                        <div class="pic"><img :src="article.decorate" alt=""></div>
                         <div class="con" @click="detail">
-                            <p class="title">前端MVVM框架之“Vue.js入门篇”</p>
+                            <p class="title" v-text="article.title"></p>
                             <div>
-                                <span><img src="articleImg/img1.png" alt=""></span>
-                                <i class="name">姓名</i><i>发布时间：</i><i class="time"> 2016-12-11 21:37:59</i><i>分类：</i><i class="type">Web前端</i>
+                                <span><img :src="article.user.avatar" alt=""></span>
+                                <i class="name" v-text="article.user.username"></i><i v-text="article.createTime">发布时间：</i><i class="time"> </i><i>分类：</i><i class="type" v-text="article.type"></i>
                             </div>
-                            <p class="text">前言：新项目忙了差不多两个月时间，现在终于能闲下来与大家一起学习、分享啦！废话不多说，进入今天的主题:“前端主流MVVM框架--后起之秀Vue.js”或许有人会疑问？咦，为什么介绍Vue.js呢? 我只晓得Angular、React。Vue.js是什么鬼？Vue到底有着什么样的魔力呢？答：因为我是Vue粉啊！哈哈。。。说这话，我估计等下会被Angular、React那群人会查水表！(┳_┳)... </p>
+                            <p class="text" v-text="article.content"></p>
                         </div>
                     </li>
                 </a>

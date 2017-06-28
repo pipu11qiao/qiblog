@@ -1,510 +1,612 @@
 
 [v-cloak] {
-    display: none
+  display: none
 }
+
 /*登录注册页面*/
-.sign{
-    position: fixed;
-    z-index: 12;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    /*height: 400px;*/
-    background: rgba(0,0,0,.5);
-    display: none;
+.sign {
+  position: fixed;
+  z-index: 12;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  /*height: 400px;*/
+  background: rgba(0, 0, 0, .5);
+  display: none;
 }
-.sign .up{
-    display: none;
+
+.sign .up {
+  display: none;
 }
-.sign .in{
-    display: none;
+
+.sign .in {
+  display: none;
 }
-.sign .up,.sign .in{
-    position: absolute;
-    top:50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    border-radius: 20px;
-    background: #f2f3f4;
-    margin: 10px 0;
-    width: 500px;
+
+.sign .up, .sign .in {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  background: #f2f3f4;
+  margin: 10px 0;
+  width: 500px;
 
 }
-.sign .up .item,.sign .in .item{
-    margin: auto;
-    width: 300px;
-    height: 60px;
-    line-height: 100px;
+
+.sign .up .item, .sign .in .item {
+  margin: auto;
+  width: 300px;
+  height: 60px;
+  line-height: 100px;
 }
-.sign .up .item p,.sign .in .item p{
-    width: 70px;
-    font-size: 14px;
-    color: #333;
-    display: inline-block;
+
+.sign .up .item p, .sign .in .item p {
+  width: 70px;
+  font-size: 14px;
+  color: #333;
+  display: inline-block;
 }
-.sign .up .item input,.sign .in .item input{
-    width: 220px;
-    height: 30px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+
+.sign .up .item input, .sign .in .item input {
+  width: 220px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
-.sign .up .item .gender{
-    display: inline-block;
-    width: 220px;
-    height: 30px;
+
+.sign .up .item .gender {
+  display: inline-block;
+  width: 220px;
+  height: 30px;
 }
-.sign .up .item .gender input{
-    width: 15px;
-    height: 15px;
-    vertical-align: middle;
-    margin-right: 5px;
+
+.sign .up .item .gender input {
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+  margin-right: 5px;
 }
-.sign .up .item .gender span{
-    margin-right: 10px;
+
+.sign .up .item .gender span {
+  margin-right: 10px;
 }
-.sign .up .btn,.sign .in .btn{
-    cursor: pointer;
-    margin: 20px auto 0;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 30px;
-    text-align: center;
-    width: 100px;
-    height: 30px;
-    border-radius: 20px;
-    background: #d4d7db;
-    box-shadow: 0 2px rgba(0, 0, 0, .5);
+
+.sign .up .btn, .sign .in .btn {
+  cursor: pointer;
+  margin: 20px auto 0;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 30px;
+  text-align: center;
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  background: #d4d7db;
+  box-shadow: 0 2px rgba(0, 0, 0, .5);
 }
+
 /*头部导航*/
-body{
-    background: #f1f1ef
+body {
+  background: #f1f1ef
 }
-.header-wrapper{
-    width: 100%;
-    height: 74px;
-    background: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#d4d7db));
+
+.header-wrapper {
+  width: 100%;
+  height: 74px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#d4d7db));
 }
-.header{
-    position: relative;
-    left: 0; top:0; bottom: 0; right: 0;
-    margin: auto;
-    z-index: 10;
-    width: 1200px;
-    height: 74px;
-    background: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#d4d7db));
+
+.header {
+  position: relative;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  z-index: 10;
+  width: 1200px;
+  height: 74px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#d4d7db));
 }
-.header h1{
-    float: left;
-    width: 200px;
-    height: 45px;
-    /*margin-left:100px;*/
-    padding-top: 14px;
+
+.header h1 {
+  float: left;
+  width: 200px;
+  height: 45px;
+  /*margin-left:100px;*/
+  padding-top: 14px;
 }
-.header h1 img{
-    width: 100%;
-    height: 100%;
+
+.header h1 img {
+  width: 100%;
+  height: 100%;
 }
-.nav{
-    float: left;
-    margin-left: 100px;
-    overflow: hidden;
+
+.nav {
+  float: left;
+  margin-left: 100px;
+  overflow: hidden;
 }
-.nav li{
-    position:relative ;
-    float: left;
-    height: 70px;
-    width: 90px;
-    text-align: center;
-    cursor: pointer;
+
+.nav li {
+  position: relative;
+  float: left;
+  height: 70px;
+  width: 90px;
+  text-align: center;
+  cursor: pointer;
 }
-.nav li:after{
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 70px;
-    width: 90px;
-    height: 70px;
-    transition:  all .2s ease-in-out;
+
+.nav li:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 70px;
+  width: 90px;
+  height: 70px;
+  transition: all .2s ease-in-out;
 }
-.nav li.odd:after{
-    background: #b9d329;
+
+.nav li.odd:after {
+  background: #b9d329;
 }
-.nav li.even:after{
-    background:#c0ebf7 ;
+
+.nav li.even:after {
+  background: #c0ebf7;
 }
-.nav li.odd{
-    border-bottom: 4px solid #b9d329;
+
+.nav li.odd {
+  border-bottom: 4px solid #b9d329;
 }
-.nav li.even{
-    border-bottom: 4px solid #c0ebf7;
+
+.nav li.even {
+  border-bottom: 4px solid #c0ebf7;
 }
-.nav li a{
-    position: relative;
-    color: #333;
-    font-size: 15px;
-    line-height: 70px;
-    z-index: 10;
+
+.nav li a {
+  position: relative;
+  color: #333;
+  font-size: 15px;
+  line-height: 70px;
+  z-index: 10;
 }
-.nav li:hover:after{
-    top: 0;
+
+.nav li:hover:after {
+  top: 0;
 }
-.after-sign{
-    float: right;
-    font-size: 15px;
-    line-height: 74px;
+
+.after-sign {
+  float: right;
+  font-size: 15px;
+  line-height: 74px;
 }
-.after-sign a{
-    margin-left: 10px;
+
+.after-sign a {
+  margin-left: 10px;
 }
-.after-sign em{
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    vertical-align: middle;
-    margin-right: 5px;
-    line-height: 0;
+
+.after-sign em {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 5px;
+  line-height: 0;
 }
-.after-sign em img{
-    width: 100%;
-    height: 100%;
+
+.after-sign em img {
+  width: 100%;
+  height: 100%;
 }
-.signin{
-    float: right;
-    margin-right: 100px;
+
+.signin {
+  float: right;
+  margin-right: 100px;
 }
-.signin a{
-    text-align: right;
-    width: 50px;
-    height: 70px;
-    display: inline-block;
-    color: #333;
-    font-size: 15px;
-    line-height: 70px;
-    z-index: 10;
+
+.signin a {
+  text-align: right;
+  width: 50px;
+  height: 70px;
+  display: inline-block;
+  color: #333;
+  font-size: 15px;
+  line-height: 70px;
+  z-index: 10;
 }
-.signin a:hover{
-    color: #7b3110;
+
+.signin a:hover {
+  color: #7b3110;
 }
+
 /*轮播图*/
-.banner-outer{
-    width: 1200px;
-    margin: 10px auto;
-    position: relative;
+.banner-outer {
+  width: 1200px;
+  margin: 10px auto;
+  position: relative;
 }
-.banner{
-    position: relative;
-    z-index: 10;
-    background: #f1f1ef;
-    padding-top: 10px;
-    overflow: auto;
-    top: 0; left: 0; bottom: 0; right: 0;
-    margin: auto;
+
+.banner {
+  position: relative;
+  z-index: 10;
+  background: #f1f1ef;
+  padding-top: 10px;
+  overflow: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
 }
-.banner ul{
-    /*margin-left: 75px;*/
-    width: 1200px;
-    height: 300px;
-    position: relative;
-    z-index: 10;
+
+.banner ul {
+  /*margin-left: 75px;*/
+  width: 1200px;
+  height: 300px;
+  position: relative;
+  z-index: 10;
 
 }
-.banner ul li{
-    height: 300px;
-    position: relative;
-    float: left;
+
+.banner ul li {
+  height: 300px;
+  position: relative;
+  float: left;
 }
-.banner a{
-    width: 40px;
-    height: 70px;
-    background: url("../img/btn_full.png") no-repeat;
-    background-position: -2px -48px;
-    position: absolute;
-    top: 115px;
-    z-index: 11;
+
+.banner a {
+  width: 40px;
+  height: 70px;
+  background: url("../img/btn_full.png") no-repeat;
+  background-position: -2px -48px;
+  position: absolute;
+  top: 115px;
+  z-index: 11;
 }
-.banner a.prev{
-    left: 45px;
+
+.banner a.prev {
+  left: 45px;
 }
-.banner a.next{
-    right: 45px ;
-    background-position: -2px -124px;
+
+.banner a.next {
+  right: 45px;
+  background-position: -2px -124px;
 }
-.banner a.prev:hover{
-    background-position: -44px -48px;
+
+.banner a.prev:hover {
+  background-position: -44px -48px;
 }
-.banner a.next:hover{
-    background-position: -44px -124px;
+
+.banner a.next:hover {
+  background-position: -44px -124px;
 }
+
 /*内容列表*/
 .content {
-    position: relative;
-    margin: auto;
-    width: 1200px;
-    /*margin-left: 75px;*/
-    top: 0; left: 0; bottom: 0; right: 0;
-}
-.content .list{
-    float: left;
-    width: 880px;
-}
-.content .right{
-    float: right;
-    width: 300px;
-}
-.content .list h3,.content .right h3{
-    /*width: 100%;*/
-    height: 25px;
-    font-size: 15px;
-    border-left: 4px solid #3472ef;
-    padding: 2px 0 2px 10px;
-    margin: 20px 0;
-}
-.content .list h3 a,.content .right h3 a{
-    color: #3472ef;
-    margin-left: 25px;
-}
-.list li{
-    width: 880px;
-    height: 145px;
-    padding: 25px 0 ;
-    background: #fff;
-    margin-bottom: 10px;
-}
-.list li .pic{
-    float: left;
-    width: 215px;
-    height: 144px;
-    margin-left: 10px;
-}
-.list li .pic img{
-    width: 100%;
-    height: 100%;
-}
-.list li .con{
-    float: left;
-    width: 620px;
-    margin-left: 20px;
-}
-.list li .con p.title{
-    font-size: 16px;
-    color: #333;
-    font-weight: bold;
-    padding: 0 0 10px 0;
-}
-.list li .con span{
-    display: inline-block;
-    width: 33px;
-    height: 33px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 10px;
-}
-.list li .con span img{
-    width: 100%;
-    height: 100%;
-}
-.list li .con i{
-    vertical-align: 12px;
-    font-style: normal;
-    font-size: 14px;
-    line-height: 33px;
-    color: #919898;
-}
-.list li .con i.time{
-    margin-right: 8px;
-}
-.list li .con i.name{
-    margin-right: 8px;
-}
-.list li .con p.text{
-    font-size: 14px;
-    color: #333;
-    padding: 0 0 10px 0;
-}
-.right .search-wrap{
-    position: relative;
-    background: #fff;
-    margin-bottom: 20px;
-    padding: 20px 0;
-}
-.right .search-wrap .search-value{
-    display: block;
-    width: 200px;
-    height: 30px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    color: #556566;
-    padding-left: 20px;
-    margin: 0 auto;
-}
-.right .search-wrap .search-btn{
-    width: 40px;
-    height: 30px;
-    position: absolute;
-    top: 22px;
-    right: 35px;
-    border: none;
-    cursor: pointer;
-    background: url("../img/btn.png") 50% no-repeat ;
-}
-.right-con{
-    background: #fff;
-}
-.right-con li{
-    width: 100%;
-    height: 60px;
-    border-bottom: 1px solid #ccc;
-}
-.right-con .pic{
-    float: left;
-    width: 32px;
-    height: 32px;
-    margin: 10px;
-}
-.right-con .pic img{
-    width: 100%;
-    height: 100%;
-}
-.right-list{
-    float: left;
-}
-.right-list p.one{
-    margin-top: 10px;
-}
-.right-list i{
-    font-style: normal;
-    color: #919898;
-}
-.right-list .right-text{
-    width: 240px;
-    margin-top: 5px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  position: relative;
+  margin: auto;
+  width: 1200px;
+  /*margin-left: 75px;*/
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
+.content .list {
+  float: left;
+  width: 880px;
+}
+
+.content .right {
+  float: right;
+  width: 300px;
+}
+
+.content .list h3, .content .right h3 {
+  /*width: 100%;*/
+  height: 25px;
+  font-size: 15px;
+  border-left: 4px solid #3472ef;
+  padding: 2px 0 2px 10px;
+  margin: 20px 0;
+}
+
+.content .list h3 a, .content .right h3 a {
+  color: #3472ef;
+  margin-left: 25px;
+}
+
+.list li {
+  width: 880px;
+  height: 145px;
+  padding: 25px 0;
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+.list li .pic {
+  float: left;
+  width: 215px;
+  height: 144px;
+  margin-left: 10px;
+}
+
+.list li .pic img {
+  width: 100%;
+  height: 100%;
+}
+
+.list li .con {
+  float: left;
+  width: 620px;
+  margin-left: 20px;
+}
+
+.list li .con p.title {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+  padding: 0 0 10px 0;
+}
+
+.list li .con span {
+  display: inline-block;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.list li .con span img {
+  width: 100%;
+  height: 100%;
+}
+
+.list li .con i {
+  vertical-align: 12px;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 33px;
+  color: #919898;
+}
+
+.list li .con i.time {
+  margin-right: 8px;
+}
+
+.list li .con i.name {
+  margin-right: 8px;
+}
+
+.list li .con p.text {
+  font-size: 14px;
+  height: 80px;
+  color: #333;
+  /*padding: 0 0 10px 0;*/
+  white-space: normal;
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.right .search-wrap {
+  position: relative;
+  background: #fff;
+  margin-bottom: 20px;
+  padding: 20px 0;
+}
+
+.right .search-wrap .search-value {
+  display: block;
+  width: 200px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #556566;
+  padding-left: 20px;
+  margin: 0 auto;
+}
+
+.right .search-wrap .search-btn {
+  width: 40px;
+  height: 30px;
+  position: absolute;
+  top: 22px;
+  right: 35px;
+  border: none;
+  cursor: pointer;
+  background: url("../img/btn.png") 50% no-repeat;
+}
+
+.right-con {
+  background: #fff;
+}
+
+.right-con li {
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid #ccc;
+}
+
+.right-con .pic {
+  float: left;
+  width: 32px;
+  height: 32px;
+  margin: 10px;
+}
+
+.right-con .pic img {
+  width: 100%;
+  height: 100%;
+}
+
+.right-list {
+  float: left;
+}
+
+.right-list p.one {
+  margin-top: 10px;
+}
+
+.right-list i {
+  font-style: normal;
+  color: #919898;
+}
+
+.right-list .right-text {
+  width: 240px;
+  margin-top: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 /*detail页面*/
-.detail-list{
-    float: left;
-    width: 880px;
-    background: #fff;
-    margin-top: 20px;
+.detail-list {
+  float: left;
+  width: 880px;
+  background: #fff;
+  margin-top: 20px;
 }
-.detail-list h2{
-    font-size: 20px;
-    text-align: center;
-    padding: 10px 0;
+
+.detail-list h2 {
+  font-size: 20px;
+  text-align: center;
+  padding: 10px 0;
 }
-.detail-list .detail-time{
-    margin: 10px auto;
-    width: 800px;
-    text-align: center;
-    border-top: 1px dashed #ac5a24;
-    border-bottom: 1px dashed #ac5a24;
-    padding: 5px 0;
+
+.detail-list .detail-time {
+  margin: 10px auto;
+  width: 800px;
+  text-align: center;
+  border-top: 1px dashed #ac5a24;
+  border-bottom: 1px dashed #ac5a24;
+  padding: 5px 0;
 }
-.detail-list .detail-time i{
-    font-style: normal;
-    color: #ac5a24;
-    font-size: 14px;
+
+.detail-list .detail-time i {
+  font-style: normal;
+  color: #ac5a24;
+  font-size: 14px;
 }
+
 .detail-list .detail-time i.time {
-    margin-right: 20px;
+  margin-right: 20px;
 }
+
 .detail-list .detail-time i.number {
-    margin-right: 20px;
+  margin-right: 20px;
 }
-.detail-list p{
-    width: 800px;
-    margin: 10px auto;
-    font-size: 14px;
-    color: #333;
+
+.detail-list p {
+  width: 800px;
+  margin: 10px auto;
+  font-size: 14px;
+  color: #333;
 }
 
 /*添加页面*/
-.add{
-    float: left;
-    width: 880px;
-    margin-top: 20px;
+.add {
+  float: left;
+  width: 880px;
+  margin-top: 20px;
 }
-.add .add-item{
-    width: 700px;
-    height: 50px;
-    margin: auto;
+
+.add .add-item {
+  width: 700px;
+  height: 50px;
+  margin: auto;
 }
-.add .add-item p{
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    float: left;
-    font-size: 16px;
-    margin-right: 20px;
+
+.add .add-item p {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  float: left;
+  font-size: 16px;
+  margin-right: 20px;
 }
-.add .add-item input{
-    width: 600px;
-    height: 30px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+
+.add .add-item input {
+  width: 600px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
-.add .add-item textarea{
-    width: 600px;
-    min-height: 300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+
+.add .add-item textarea {
+  width: 600px;
+  min-height: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
-.add .add-item select{
-    width: 600px;
-    height: 30px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+
+.add .add-item select {
+  width: 600px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 
 }
-.add .add-item.last{
-    margin-top: 275px;
-    line-height: 20px;
+
+.add .add-item.last {
+  margin-top: 275px;
+  line-height: 20px;
 }
-.add .add-item select option{
-    height: 30px;
+
+.add .add-item select option {
+  height: 30px;
 }
-.add .articleSubmit{
-    width: 60px;
-    height: 30px;
-    background: rgb(231, 231, 233);
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    font-size: 15px;
-    margin-left: 410px;
-    cursor: pointer;
+
+.add .articleSubmit {
+  width: 60px;
+  height: 30px;
+  background: rgb(231, 231, 233);
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  margin-left: 410px;
+  cursor: pointer;
 }
-.add .articleSubmit:hover{
-    background: rgba(119, 119, 119, 0.45);
+
+.add .articleSubmit:hover {
+  background: rgba(119, 119, 119, 0.45);
 }
-.modify-btn{
-    padding: 20px 20px 20px 360px;
+
+.modify-btn {
+  padding: 20px 20px 20px 360px;
 }
-.modify-btn button{
-    width: 60px;
-    height: 30px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 15px;
-    border: 1px solid #ddd;
+
+.modify-btn button {
+  width: 60px;
+  height: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+  border: 1px solid #ddd;
 }
-.modify-btn button.modify{
-    margin-right: 20px;
-    background: rgb(255, 224, 99);
+
+.modify-btn button.modify {
+  margin-right: 20px;
+  background: rgb(255, 224, 99);
 }
-.modify-btn button.modify:hover{
-    background: rgb(255, 168, 12);
+
+.modify-btn button.modify:hover {
+  background: rgb(255, 168, 12);
 }
-.modify-btn button.delete{
-    background: rgb(255, 128, 128);
+
+.modify-btn button.delete {
+  background: rgb(255, 128, 128);
 }
-.modify-btn button.delete:hover{
-    background: rgb(255, 79, 18);
+
+.modify-btn button.delete:hover {
+  background: rgb(255, 79, 18);
 }
 

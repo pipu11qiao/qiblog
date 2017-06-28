@@ -56,16 +56,7 @@ var vm=new Vue({
 		username:'',
 		avatar:'',
     selected: 0,
-    articles: [
-      {
-        title: '',
-        content: '',
-        name: '',
-        time: '',
-        type: '',
-        img:''
-      }
-    ]
+    articles: []
 	},
 	created:function () {
 		var data;
@@ -227,11 +218,7 @@ var vm=new Vue({
         type:'post',
         success:function (data) {
           console.log(data);
-          me.articles.title=data.title;
-          me.articles.content=data.content;
-          me.articles.type=data.type;
-          me.articles.time=data.createTime;
-          me.articles.img=data.decorate;
+          me.articles=data.data;
         }
       })
     }
