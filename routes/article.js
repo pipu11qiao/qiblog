@@ -24,7 +24,7 @@ var mardown = require('markdown').markdown;
  * 4. 引入User模型，然后把此对象保存到数据库中
  */
 
-//处理注册用户时的表单提交
+//文章增加
 router.post('/add', checkLogin,function (req, res) {
 	//取得请求体对象
 	var user = req.session.user;
@@ -44,10 +44,11 @@ router.post('/add', checkLogin,function (req, res) {
 		}
 	})
 });
-//处理注册用户时的表单提交
+//文章列表
 router.post('/list', function (req, res) {
 	var search = req.body.search;
-	console.log(search);
+	var pageNum = req.body.pageNum;
+	var pageSize = req.body.pageSize;
 	var reg = new RegExp(search, 'i');
 	var queryObj = {$or: [{title: reg}, {content: reg}]};
 	//取得请求体对象
@@ -57,6 +58,12 @@ router.post('/list', function (req, res) {
 		} else {
 			res.send(Send.s2({articles: articles}));
 		}
+	});
+});
+//文章列表
+router.post('/visited', function (req, res) {
+	Article.findByIdAndUpdate(req.body._id,{$inc:{visited:1}},function (err) {
+		res.send(Send.s5('ok'));
 	});
 });
 function getDecorate() {

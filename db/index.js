@@ -22,6 +22,7 @@ var ArticleSchema = new mongoose.Schema({
 	decorate:String,
 	createTime: Number,
 	updateTime: Number,
+	visited: Number,
 	user: {
 		type: ObjectId,
 		ref: 'users'
