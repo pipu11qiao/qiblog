@@ -45,15 +45,18 @@ router.post('/add', checkLogin,function (req, res) {
 	})
 });
 //处理注册用户时的表单提交
-router.post('/list',function (req, res) {
+router.post('/list', function (req, res) {
+	var search = req.body.search;
+	console.log(search);
+	var reg = new RegExp(search, 'i');
+	var queryObj = {$or: [{title: reg}, {content: reg}]};
 	//取得请求体对象
-	Article.find({}).populate('user').exec(function (err,articles) {
-			if(err) {
-				res.send(Send.s5(err));
-			} else {
-				console.log(articles[0]);
-				res.send(Send.s2(articles));
-			}
+	Article.find(queryObj).populate('user').exec(function (err, articles) {
+		if (err) {
+			res.send(Send.s5(err));
+		} else {
+			res.send(Send.s2({articles: articles}));
+		}
 	});
 });
 function getDecorate() {
