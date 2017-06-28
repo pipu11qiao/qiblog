@@ -44,6 +44,24 @@ router.post('/add', checkLogin,function (req, res) {
 		}
 	})
 });
+// 文章修改
+router.post('/update',function (req,res) {
+	//取得请求体对象
+	var user = req.session.user;
+	var curArticle = req.body;
+	var _id = curArticle._id;
+	curArticle.type = parseInt(curArticle.type);
+	curArticle.markdown = mardown.toHTML(curArticle.content);
+	curArticle.updateTime = Date.now();
+	Article.findByIdAndUpdate(_id,{$set:curArticle}, function (err, doc) {
+		if (err) {
+			res.send(Send.s5(err));
+		} else {
+			//把保存后的对象作为req.session属性,session对象是在服务器端内存里放置
+			res.send(Send.s2(doc));
+		}
+	})
+});
 //文章列表
 router.post('/list', function (req, res) {
 	var search = req.body.search;
@@ -89,6 +107,7 @@ router.post('/delete', function (req, res) {
     }
   })
 });
+
 
 function getDecorate() {
 	return 'articleImg/img' + Math.ceil(Math.random() * 7) + '.png';
