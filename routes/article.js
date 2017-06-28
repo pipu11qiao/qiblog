@@ -51,7 +51,7 @@ router.post('/list', function (req, res) {
 	var reg = new RegExp(search, 'i');
 	var queryObj = {$or: [{title: reg}, {content: reg}]};
 	//取得请求体对象
-	Article.find(queryObj).populate('user').exec(function (err, articles) {
+	Article.find(queryObj).sort({updateTime: -1}).populate('user').exec(function (err, articles) {
 		if (err) {
 			res.send(Send.s5(err));
 		} else {
