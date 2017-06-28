@@ -231,6 +231,7 @@ var vm=new Vue({
         success:function (data) {
           //console.log(data);
           me.curView=1;
+          me.getList();
         }
       })
     },

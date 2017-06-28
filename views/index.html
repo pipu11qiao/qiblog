@@ -104,12 +104,12 @@
                     <li v-for="article in articles ">
                         <div class="pic"><img :src="article.decorate" alt=""></div>
                         <div class="con" @click="detail">
-                            <p class="title" v-text="article.title"></p>
+                            <p class="title" v-text="article.title" v-cloak=""></p>
                             <div>
                                 <span><img :src="article.user.avatar" alt=""></span>
-                                <i class="name" v-text="article.user.username"></i><i v-text="article.updateTime">发布时间：</i><i class="time"> </i><i>分类：</i><i class="type" v-text="article.type"></i>
+                                <i class="name" v-text="article.user.username"></i><i v-text="article.updateTime" v-cloak="">发布时间：</i><i class="time"> </i><i>分类：</i><i class="type" v-text="article.type" v-cloak=""></i>
                             </div>
-                            <p class="text" v-text="article.contentFormat"></p>
+                            <p class="text" v-text="article.contentFormat" v-cloak=""></p>
                         </div>
                     </li>
                 </a>
