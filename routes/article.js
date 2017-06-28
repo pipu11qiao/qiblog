@@ -48,11 +48,14 @@ router.post('/update',function (req,res) {
 	//取得请求体对象
 	var user = req.session.user;
 	var curArticle = req.body;
+	var result = {};
 	var _id = curArticle._id;
-	curArticle.type = parseInt(curArticle.type);
-	curArticle.markdown = mardown.toHTML(curArticle.content);
-	curArticle.updateTime = Date.now();
-	Article.findByIdAndUpdate(_id,{$set:curArticle}, function (err, doc) {
+	result.title = curArticle.title;
+	result.type = parseInt(curArticle.type);
+	result.markdown = mardown.toHTML(curArticle.content);
+	result.updateTime = Date.now();
+
+	Article.findByIdAndUpdate(_id,{$set:result}, function (err, doc) {
 		if (err) {
 			res.send(Send.s5(err));
 		} else {
