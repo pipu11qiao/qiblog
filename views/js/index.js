@@ -47,7 +47,7 @@ Date.prototype.Format = function (fmt) {
     if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
   return fmt;
 };
-//
+//详情页面
 var contentFormat = function(value) {
   var str = '';
   var len = 172;
@@ -61,6 +61,83 @@ var contentFormat = function(value) {
   }
   return str;
 };
+// 分页
+Vue.component('pc-pagination', {
+  template: '<div class="pagination" >' +
+  ' <div class="pull-left">' +
+  '<div class="inlineBlock" >共{{vTotalCount}}项</div>' +
+  '</div>' +
+  '<div class="pull-right">' +
+  '<span class="inlineBlock">{{vCurPage}}/{{totalPage}}页</span>' +
+  '<div class="btn-group1 btn-group">' +
+  '<button type="button" class="btn btn-page"   @click="changePage(1)">首页</button>' +
+  '<button type="button" class="btn btn-page"   @click="changePage((vCurPage -1))">上一页</button>' +
+  '</div> <div class="btn-group" v-for="item in pageArray">' +
+  '<button type="button" class="btn btn-page" :class="{active: item == vCurPage}" @click="changePage(item)">{{item}}</button>' +
+  '</div>' +
+  '<div class="btn-group2 btn-group">' +
+  '<button type="button" class="btn btn-page" @click="changePage((vCurPage + 1))">下一页</button>' +
+  '<button type="button" class="btn btn-page" @click="changePage(totalPage)">尾页</button>' +
+  '</div>' +
+  '</div>' +
+  '</div>',
+  props: {
+    vCurPage: {
+      //当前页数
+      type: Number,
+      default: 1,
+      required: true
+    },
+    vPageSize: {
+      //每页数据条数
+      type: Number,
+      default: 10,
+      required: true
+    },
+    vTotalCount: {
+      // 数据总条数
+      type: Number,
+      default: 0,
+      required: true
+    },
+    vCountOfBtn: {
+      //显示按钮数
+      type: Number,
+      default: 9
+    }
+  },
+  computed: {
+    totalPage: function () {
+      return Math.ceil(this.vTotalCount / this.vPageSize);
+    },
+    pageArray: function () {
+      var result, i, len, page;
+
+      result = [];
+      len = (this.vCountOfBtn - 1 ) / 2;
+      for (i = -len; i < (len + 1); i++) {
+        page = this.vCurPage + i;
+        if (page > 0 && page <= this.totalPage) {
+          result.push(page);
+        }
+      }
+      return result;
+    }
+  },
+  methods: {
+    changePage: function (page) {
+      if (page > 0 && page <= this.totalPage && page !== this.vCurPage) {
+        this.vCurPage = page;
+        this.$emit('event1', page);
+      }
+    }
+  },
+  watch: {
+    vPageSize: function () {
+      this.$emit('event2', this.vPageSize)
+    }
+  }
+});
 
 var app = {
     module: [user,carousel],
@@ -221,9 +298,13 @@ var vm=new Vue({
       this.curView=3;
 		  var curArticle = this.articles[index];
 		  this.detailArticle=curArticle;
+		  console.log(this.detailArticle);
+		  var ajaxData={
+		    _id:me.detailArticle._id
+      };
 		  $.ajax({
         url:'/articles/visited',
-        data:JSON.stringify(me.detailArticle._id),
+        data:JSON.stringify(ajaxData),
         contentType:'application/json',
         type:'post',
         success:function () {

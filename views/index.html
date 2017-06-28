@@ -114,6 +114,8 @@
                     </li>
                 </a>
             </ul>
+            <!--分页-->
+            <pc-pagination ></pc-pagination>
         </div>
         <!--发表文章-->
         <div class="add" v-show="curView==2" v-cloak="">
@@ -148,7 +150,7 @@
         <div class="detail-list" v-if="curView==3" v-cloak="">
             <h2 v-text="detailArticle.title"></h2>
             <div class="detail-time">
-                <i>编辑时间：</i><i class="time" v-text="detailArticle.updateTime"></i><i>浏览量：</i><i class="number">624</i><i>作者：</i><i class="author" v-text="detailArticle.user.username"></i>
+                <i>编辑时间：</i><i class="time" v-text="detailArticle.updateTime"></i><i>浏览量：</i><i class="number" v-text="detailArticle.visited"></i><i>作者：</i><i class="author" v-text="detailArticle.user.username"></i>
             </div>
             <div class="detail-con" v-html="detailArticle.markdown"></div>
             <div class="modify-btn">
