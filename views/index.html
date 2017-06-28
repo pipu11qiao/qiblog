@@ -97,7 +97,7 @@
 
     <!--列表-->
     <div class="content">
-        <div class="list"  v-show="curView===1">
+        <div class="list"  v-show="curView==1">
             <h3>文章推荐 <a href="javascript:;" v-if="isSign" @click="add">发表文章</a></h3>
             <ul>
                 <a href="javascript:;">
@@ -113,24 +113,10 @@
                         </div>
                     </li>
                 </a>
-                <a href="#">
-                    <li>
-                        <div class="pic"><img src="articleImg/img2.png" alt=""></div>
-                        <div class="con">
-                            <p class="title">前端MVVM框架之“Vue.js入门篇”</p>
-                            <div>
-                                <span><img src="articleImg/img2.png" alt=""></span>
-                                <i class="name">姓名</i><i>发布时间：</i><i class="time"> 2016-12-11 21:37:59</i><i>分类：</i><i class="type">Web前端</i>
-                            </div>
-                            <p class="text">前言：新项目忙了差不多两个月时间，现在终于能闲下来与大家一起学习、分享啦！废话不多说，进入今天的主题:“前端主流MVVM框架--后起之秀Vue.js”或许有人会疑问？咦，为什么介绍Vue.js呢? 我只晓得Angular、React。Vue.js是什么鬼？Vue到底有着什么样的魔力呢？答：因为我是Vue粉啊！哈哈。。。说这话，我估计等下会被Angular、React那群人会查水表！(┳_┳)... </p>
-                        </div>
-                    </li>
-                </a>
-
             </ul>
         </div>
         <!--发表文章-->
-        <div class="add" v-show="curView===2" v-cloak="">
+        <div class="add" v-show="curView==2" v-cloak="">
             <div class="add-item">
                 <p>标题</p>
                 <div >
@@ -148,18 +134,18 @@
             <div class="add-item last">
                 <p>分类</p>
                 <div >
-                    <select name="type" id="type">
-                        <option value="">移动前端</option>
-                        <option value="">Web前端</option>
-                        <option value="">学无止境</option>
+                    <select name="type" id="type" v-model="selected">
+                        <option value="0">移动前端</option>
+                        <option value="1">Web前端</option>
+                        <option value="2">学无止境</option>
                     </select>
                 </div>
             </div>
-            <button class="articleSubmit">提交</button>
+            <button class="articleSubmit" @click="addArticle">提交</button>
 
         </div>
         <!--详情页面-->
-        <div class="detail-list" v-show="curView===3" v-cloak="">
+        <div class="detail-list" v-show="curView==3" v-cloak="">
             <h2>前端MVVM框架之“Vue.js入门篇”</h2>
             <div class="detail-time">
                 <i>编辑时间：</i><i class="time"> 2016-12-11</i><i>浏览量：</i><i class="number">624</i><i>作者：</i><i class="author">哈利波特</i>

@@ -55,6 +55,17 @@ var vm=new Vue({
 		curView:1,
 		username:'',
 		avatar:'',
+    selected: 0,
+    articles: [
+      {
+        title: '',
+        content: '',
+        name: '',
+        time: '',
+        type: '',
+        img:''
+      }
+    ]
 	},
 	created:function () {
 		var data;
@@ -64,6 +75,7 @@ var vm=new Vue({
       this.username=data.username;
       this.avatar=data.avatar;
 		}
+		this.getList();
   },
 	methods:{
 		//注册登录弹窗
@@ -144,8 +156,8 @@ var vm=new Vue({
 		signIn:function () {
 			var me=this;
 			var ajaxData={
-				username:$('#username1').val(),
-				password:$('#password1').val()
+				username:$('#username1').val().trim(),
+				password:$('#password1').val().trim()
 			};
 			$.ajax({
 				url:'/users/signin',
@@ -174,22 +186,57 @@ var vm=new Vue({
 			this.isSign=false;
       this.curView=1;
     },
-		//发表文章
+		//发表文章页面显示
 		add:function () {
       this.curView=2;
-			$('.list').hide();
-      $('.detail-list').hide();
-			$('.add').show();
     },
 		//文章详情页面
     detail:function () {
       this.curView=3;
-      $('.list').hide();
-      $('.add').hide();
-      $('.detail-list').show();
+    },
+    //发表文章
+    addArticle:function () {
+		  var me=this;
+		  var ajaxData={
+		    title:$('#title').val().trim(),
+        content:$('#content').val().trim(),
+        type:me.selected
+      };
+      $.ajax({
+        url:'/articles/add',
+        data:JSON.stringify(ajaxData),
+        contentType: 'application/json',
+        type:'post',
+        success:function (data) {
+          //console.log(data);
+          me.curView=1;
+        }
+      })
+    },
+    //获取列表
+    getList:function () {
+      var me=this;
+      var ajaxData={
+        pageSize:'',
+        pageNumber:'',
+      };
+      $.ajax({
+        url:'/articles/list',
+        data:'',
+        contentType: 'application/json',
+        type:'post',
+        success:function (data) {
+          console.log(data);
+          me.articles.title=data.title;
+          me.articles.content=data.content;
+          me.articles.type=data.type;
+          me.articles.time=data.createTime;
+          me.articles.img=data.decorate;
+        }
+      })
     }
-	}
 
+	}
 
 });
 
