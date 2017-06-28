@@ -122,13 +122,13 @@
             <div class="add-item">
                 <p>标题</p>
                 <div >
-                    <input type="text" name="title" id="title">
+                    <input type="text" name="title" id="title" v-model="addArticle.title">
                 </div>
             </div>
             <div class="add-item">
                 <p>正文</p>
                 <div >
-                <textarea type="text" name="content" id="content">
+                <textarea type="text" name="content" id="content" v-model="addArticle.content">
 
                 </textarea>
                 </div>
@@ -136,14 +136,14 @@
             <div class="add-item last">
                 <p>分类</p>
                 <div >
-                    <select name="type" id="type" v-model="selected">
+                    <select name="type" id="type" v-model="addArticle.type">
                         <option value="0">移动前端</option>
                         <option value="1">Web前端</option>
                         <option value="2">学无止境</option>
                     </select>
                 </div>
             </div>
-            <button class="articleSubmit" @click="addArticle">提交</button>
+            <button class="articleSubmit" @click="saveArticle">提交</button>
 
         </div>
         <!--详情页面-->
@@ -154,7 +154,7 @@
             </div>
             <div class="detail-con" v-html="detailArticle.markdown"></div>
             <div class="modify-btn">
-                <button class="modify" v-show="isDelete" @click="update">修改</button>
+                <button class="modify" v-show="isDelete" @click="update(1)">修改</button>
                 <button class="delete" v-show="isDelete" @click="deleteArticle">删除</button>
             </div>
         </div>

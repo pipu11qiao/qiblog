@@ -162,7 +162,6 @@ var vm=new Vue({
 		curView:1,
 		username:'',
 		avatar:'',
-    selected: 0,
     articles: [],
     pageNum:1,
     pageSize: 5,
@@ -170,6 +169,14 @@ var vm=new Vue({
     count: 0,
     detailArticle: {},
     isDelete:false,
+    addArticle:{
+		  title:'',
+      content:'',
+      type: 0,
+    },
+    ajaxType:0
+
+
 	},
 	created:function () {
 		var data;
@@ -294,6 +301,7 @@ var vm=new Vue({
 		//发表文章页面显示
 		add:function () {
       this.curView=2;
+      this.ajaxType=0;
     },
 		//文章详情页面
     detail:function (index) {
@@ -321,15 +329,16 @@ var vm=new Vue({
 
     },
     //发表文章
-    addArticle:function () {
+    saveArticle:function (type) {
 		  var me=this;
-		  var ajaxData={
-		    title:$('#title').val().trim(),
-        content:$('#content').val().trim(),
-        type:me.selected
-      };
+		  var ajaxData = $.extend({},this.addArticle);
+		  if(this.ajaxType==1){
+		    ajaxData._id = this.detailArticle._id;
+      }
+		  var ajaxUrl=this.ajaxType==0?'/articles/add':'/articles/update';
+
       $.ajax({
-        url:'/articles/add',
+        url:ajaxUrl,
         data:JSON.stringify(ajaxData),
         contentType: 'application/json',
         type:'post',
@@ -383,8 +392,8 @@ var vm=new Vue({
     deleteArticle:function () {
 		  var me=this;
       var name=$('.name').html();
-      console.log(name);
-      console.log(me.detailArticle);
+      //console.log(name);
+      //console.log(me.detailArticle);
       var ajaxData={
         _id:me.detailArticle._id
       };
@@ -402,18 +411,12 @@ var vm=new Vue({
 
     //修改文章
     update:function () {
-      this.curView=3;
-      var me=this;
-      $.ajax({
-        url:'/articles/update',
-        //data:JSON.stringify(ajaxData),
-        contentType:'application/json',
-        type:'post',
-        success:function (data) {
-
-        }
-      })
-
+      this.curView=2;
+      this.ajaxType=1;
+      console.log(this.detailArticle);
+      this.addArticle.title=this.detailArticle.title;
+      this.addArticle.content=this.detailArticle.content;
+      this.addArticle.content=this.detailArticle.type
     }
 	},
   computed: {
@@ -423,7 +426,8 @@ var vm=new Vue({
 	    obj.pageSize = this.pageSize;
 	    obj.search = this.searchText.trim();
       return obj;
-    }
+    },
+
   }
 
 });
