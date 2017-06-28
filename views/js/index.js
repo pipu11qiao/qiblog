@@ -68,18 +68,18 @@ Vue.component('pc-pagination', {
   '<div class="inlineBlock" >共{{vTotalCount}}项</div>' +
   '</div>' +
   '<div class="pull-right">' +
-  '<span class="inlineBlock">{{vCurPage}}/{{totalPage}}页</span>' +
-  '<div class="btn-group1 btn-group">' +
-  '<button type="button" class="btn btn-page"   @click="changePage(1)">首页</button>' +
-  '<button type="button" class="btn btn-page"   @click="changePage((vCurPage -1))">上一页</button>' +
-  '</div> <div class="btn-group" v-for="item in pageArray">' +
-  '<button type="button" class="btn btn-page" :class="{active: item == vCurPage}" @click="changePage(item)">{{item}}</button>' +
-  '</div>' +
   '<div class="btn-group2 btn-group">' +
   '<button type="button" class="btn btn-page" @click="changePage((vCurPage + 1))">下一页</button>' +
   '<button type="button" class="btn btn-page" @click="changePage(totalPage)">尾页</button>' +
   '</div>' +
+  '</div> <div class="btn-group" v-for="item in pageArray">' +
+  '<button type="button" class="btn btn-page btn-num" :class="{active: item == vCurPage}" @click="changePage(item)">{{item}}</button>' +
   '</div>' +
+  '<div class="btn-group1 btn-group">' +
+  '<button type="button" class="btn btn-page"   @click="changePage(1)">首页</button>' +
+  '<button type="button" class="btn btn-page"   @click="changePage((vCurPage -1))">上一页</button>' +
+  '</div>' +
+  '<span class="inlineBlock">{{vCurPage}}/{{totalPage}}页</span>' +
   '</div>',
   props: {
     vCurPage: {
@@ -121,6 +121,7 @@ Vue.component('pc-pagination', {
           result.push(page);
         }
       }
+      result.reverse();
       return result;
     }
   },
@@ -167,7 +168,8 @@ var vm=new Vue({
     pageSize: 5,
     searchText: '',
     count: 0,
-    detailArticle: {}
+    detailArticle: {},
+    isDelete:false,
 	},
 	created:function () {
 		var data;
@@ -286,6 +288,7 @@ var vm=new Vue({
 		signOut:function () {
 			sessionStorage.removeItem('data');
 			this.isSign=false;
+			this.isDelete=false;
       this.curView=1;
     },
 		//发表文章页面显示
@@ -294,11 +297,15 @@ var vm=new Vue({
     },
 		//文章详情页面
     detail:function (index) {
-		  var me=this;
       this.curView=3;
+		  var me=this;
 		  var curArticle = this.articles[index];
 		  this.detailArticle=curArticle;
-		  console.log(this.detailArticle);
+      var name=this.detailArticle.user.username;
+      if(me.username==name){
+        me.isDelete=true;
+      }
+      //console.log(me.username);
 		  var ajaxData={
 		    _id:me.detailArticle._id
       };
@@ -310,7 +317,8 @@ var vm=new Vue({
         success:function () {
 
         }
-      })
+      });
+
     },
     //发表文章
     addArticle:function () {
@@ -371,6 +379,42 @@ var vm=new Vue({
 		  this.pageNum = 1;
       this.getList();
     },
+    //删除文章
+    deleteArticle:function () {
+		  var me=this;
+      var name=$('.name').html();
+      console.log(name);
+      console.log(me.detailArticle);
+      var ajaxData={
+        _id:me.detailArticle._id
+      };
+        $.ajax({
+          url:'/articles/delete',
+          data:JSON.stringify(ajaxData),
+          contentType:'application/json',
+          type:'post',
+          success:function (data) {
+            me.curView=1;
+            me.getList();
+          }
+        })
+    },
+
+    //修改文章
+    update:function () {
+      this.curView=3;
+      var me=this;
+      $.ajax({
+        url:'/articles/update',
+        //data:JSON.stringify(ajaxData),
+        contentType:'application/json',
+        type:'post',
+        success:function (data) {
+
+        }
+      })
+
+    }
 	},
   computed: {
 	  listAjaxData: function () {

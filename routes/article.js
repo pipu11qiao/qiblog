@@ -1,4 +1,3 @@
-
 var express = require('express');
 //导入操作数据库的用户集合的模型
 var Article = require('../db').Article;
@@ -25,24 +24,24 @@ var mardown = require('markdown').markdown;
  */
 
 //文章增加
-router.post('/add', checkLogin,function (req, res) {
-	//取得请求体对象
-	var user = req.session.user;
-	var curArticle = req.body;
-	curArticle.type = parseInt(curArticle.type);
-	curArticle.markdown = mardown.toHTML(curArticle.content);
-	curArticle.createTime = Date.now();
-	curArticle.updateTime = Date.now();
-	curArticle.decorate = getDecorate();
-	curArticle.user = user._id;
-	Article.create(curArticle, function (err, doc) {
-		if (err) {
-			res.send(Send.s5(err));
-		} else {
-			//把保存后的对象作为req.session属性,session对象是在服务器端内存里放置
-			res.send(Send.s2(doc));
-		}
-	})
+router.post('/add', checkLogin, function (req, res) {
+  //取得请求体对象
+  var user = req.session.user;
+  var curArticle = req.body;
+  curArticle.type = parseInt(curArticle.type);
+  curArticle.markdown = mardown.toHTML(curArticle.content);
+  curArticle.createTime = Date.now();
+  curArticle.updateTime = Date.now();
+  curArticle.decorate = getDecorate();
+  curArticle.user = user._id;
+  Article.create(curArticle, function (err, doc) {
+    if (err) {
+      res.send(Send.s5(err));
+    } else {
+      //把保存后的对象作为req.session属性,session对象是在服务器端内存里放置
+      res.send(Send.s2(doc));
+    }
+  })
 });
 // 文章修改
 router.post('/update',function (req,res) {
@@ -64,14 +63,14 @@ router.post('/update',function (req,res) {
 });
 //文章列表
 router.post('/list', function (req, res) {
-	var search = req.body.search;
-	var pageNum = req.body.pageNum;
-	var pageSize = req.body.pageSize;
-	var reg = new RegExp(search, 'i');
-	var queryObj = {$or: [{title: reg}, {content: reg}]};
-	//取得请求体对象
-	Article.find(queryObj).sort({updateTime: -1}).skip((pageNum-1) * pageSize).limit(pageSize).populate('user').exec(function (err, articles) {
-		Article.count({},function (err,count) {
+  var search = req.body.search;
+  var pageNum = req.body.pageNum;
+  var pageSize = req.body.pageSize;
+  var reg = new RegExp(search, 'i');
+  var queryObj = {$or: [{title: reg}, {content: reg}]};
+  //取得请求体对象
+  Article.find(queryObj).sort({updateTime: -1}).skip((pageNum - 1) * pageSize).limit(pageSize).populate('user').exec(function (err, articles) {
+    Article.count({}, function (err, count) {
       if (err) {
         res.send(Send.s5(err));
       } else {
@@ -84,8 +83,9 @@ router.post('/list', function (req, res) {
       }
     });
 
-	});
+  });
 });
+
 //文章列表
 router.post('/visited', function (req, res) {
 	Article.findByIdAndUpdate(req.body._id,{$inc:{visited:1}},function (err) {
@@ -99,7 +99,7 @@ router.post('/visited', function (req, res) {
 });
 //文章删除
 router.post('/delete', function (req, res) {
-  Article.findByIdAndRemove(req.body._id,function (err) {
+  Article.findByIdAndRemove(req.body._id, function (err) {
     if (err) {
       res.send(Send.s4('ok'));
     } else {
@@ -110,6 +110,6 @@ router.post('/delete', function (req, res) {
 
 
 function getDecorate() {
-	return 'articleImg/img' + Math.ceil(Math.random() * 7) + '.png';
+  return 'articleImg/img' + Math.ceil(Math.random() * 7) + '.png';
 }
 module.exports = router;

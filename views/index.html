@@ -154,8 +154,8 @@
             </div>
             <div class="detail-con" v-html="detailArticle.markdown"></div>
             <div class="modify-btn">
-                <button class="modify">修改</button>
-                <button class="delete">删除</button>
+                <button class="modify" v-show="isDelete" @click="update">修改</button>
+                <button class="delete" v-show="isDelete" @click="deleteArticle">删除</button>
             </div>
         </div>
 

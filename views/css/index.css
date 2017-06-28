@@ -641,14 +641,15 @@ body {
   width: 60px;
   height: 21px;
 }
-.pagination .btn-group1{
-  float: left;
-}
-.pagination .btn-group2{
+.pagination .btn-group{
   float: right;
 }
+.pagination .btn-num{
+  width: 25px;
+}
+
 .pagination .inlineBlock{
-  float: left;
+  float: right;
   margin-right: 10px;
 }
 
