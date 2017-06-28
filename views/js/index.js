@@ -47,6 +47,20 @@ Date.prototype.Format = function (fmt) {
     if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
   return fmt;
 };
+//
+var contentFormat = function(value) {
+  var str = '';
+  var len = 172;
+  if (!value) {
+    return str;
+  }
+  value += '';
+  str = value.replace(/<[^>]+>/g,'').replace(/\s/g,'');
+  if(str.length > len) {
+    str = str.slice(0,len) + '...';
+  }
+  return str;
+};
 
 var app = {
     module: [user,carousel],
@@ -245,6 +259,8 @@ var vm=new Vue({
               default:
                 item.type='学无止境'
             }
+            item.updateTime = new Date(-(-item.updateTime)).Format('yyyy年MM月dd日');
+            item.contentFormat = contentFormat(item.markdown);
           });
 
           me.articles=data.data;

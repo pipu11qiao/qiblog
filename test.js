@@ -1,4 +1,4 @@
-Vue.filter('date-hypen', function (value) {
+Vue.filter('content', function (value) {
 	var str = '';
 	if (!value) {
 		return str;

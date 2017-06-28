@@ -107,9 +107,9 @@
                             <p class="title" v-text="article.title"></p>
                             <div>
                                 <span><img :src="article.user.avatar" alt=""></span>
-                                <i class="name" v-text="article.user.username"></i><i v-text="article.createTime">发布时间：</i><i class="time"> </i><i>分类：</i><i class="type" v-text="article.type"></i>
+                                <i class="name" v-text="article.user.username"></i><i v-text="article.updateTime">发布时间：</i><i class="time"> </i><i>分类：</i><i class="type" v-text="article.type"></i>
                             </div>
-                            <p class="text" v-text="article.content"></p>
+                            <p class="text" v-text="article.contentFormat"></p>
                         </div>
                     </li>
                 </a>
