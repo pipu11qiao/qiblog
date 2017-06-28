@@ -86,7 +86,11 @@ var vm=new Vue({
 		username:'',
 		avatar:'',
     selected: 0,
-    articles: []
+    articles: [],
+    pageNum:1,
+    pageSize: 10,
+    searchText: '',
+    detailArticle: {}
 	},
 	created:function () {
 		var data;
@@ -212,8 +216,20 @@ var vm=new Vue({
       this.curView=2;
     },
 		//文章详情页面
-    detail:function () {
+    detail:function (index) {
+		  var me=this;
       this.curView=3;
+		  var curArticle = this.articles[index];
+		  this.detailArticle=curArticle;
+		  $.ajax({
+        url:'/articles/visited',
+        data:JSON.stringify(me.detailArticle._id),
+        contentType:'application/json',
+        type:'post',
+        success:function () {
+
+        }
+      })
     },
     //发表文章
     addArticle:function () {
@@ -238,18 +254,15 @@ var vm=new Vue({
     //获取列表
     getList:function () {
       var me=this;
-      var ajaxData={
-        pageSize:'',
-        pageNumber:'',
-      };
       $.ajax({
         url:'/articles/list',
-        data:'',
+        data:JSON.stringify(me.listAjaxData),
         contentType: 'application/json',
         type:'post',
         success:function (data) {
-          console.log(data);
-          data.data.forEach(function (item) {
+          //console.log(data);
+          var data=data.data;
+          data.articles.forEach(function (item) {
             switch (item.type){
               case 0:
                 item.type='移动前端';
@@ -263,14 +276,25 @@ var vm=new Vue({
             item.updateTime = new Date(-(-item.updateTime)).Format('yyyy年MM月dd日');
             item.contentFormat = contentFormat(item.markdown);
           });
-
-          me.articles=data.data;
-
+          me.articles=data.articles;
         }
       })
+    },
+    //所有文章
+    search:function () {
+		  this.pageNum = 1;
+      this.getList();
+    },
+	},
+  computed: {
+	  listAjaxData: function () {
+	    var obj = {};
+	    obj.pageNum = this.pageNum;
+	    obj.pageSize = this.pageSize;
+	    obj.search = this.searchText.trim();
+      return obj;
     }
-
-	}
+  }
 
 });
 
