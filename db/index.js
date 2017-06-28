@@ -16,7 +16,8 @@ exports.User = mongoose.model('users', UserSchema);
 // 文章模块
 var ArticleSchema = new mongoose.Schema({
 	title: String,
-	content: {type: String},
+	content: String,
+	markdown: String,
 	type: Number,
 	decorate:String,
 	createTime: Number,

@@ -2,7 +2,7 @@
 var express = require('express');
 //导入操作数据库的用户集合的模型
 var Article = require('../db').Article;
-var auth = require('../auth');
+var checkLogin = require('../auth').checkLogin;
 // var multer=require('multer');
 // var upload=multer({dest:'public/'});
 //这是一个工厂函数,返回一个路由容器实例
@@ -25,13 +25,16 @@ var mardown = require('markdown').markdown;
  */
 
 //处理注册用户时的表单提交
-router.post('/add', function (req, res) {
+router.post('/add', checkLogin,function (req, res) {
 	//取得请求体对象
+	var user = req.session.user;
 	var curArticle = req.body;
-	curArticle.content = mardown.toHTML(curArticle.content);
+	curArticle.type = parseInt(curArticle.type);
+	curArticle.markdown = mardown.toHTML(curArticle.content);
 	curArticle.createTime = Date.now();
 	curArticle.updateTime = Date.now();
 	curArticle.decorate = getDecorate();
+	curArticle.user = user._id;
 	Article.create(curArticle, function (err, doc) {
 		if (err) {
 			res.send(Send.s5(err));
@@ -40,6 +43,18 @@ router.post('/add', function (req, res) {
 			res.send(Send.s2(doc));
 		}
 	})
+});
+//处理注册用户时的表单提交
+router.post('/list',function (req, res) {
+	//取得请求体对象
+	Article.find({}).populate('user').exec(function (err,articles) {
+			if(err) {
+				res.send(Send.s5(err));
+			} else {
+				console.log(articles[0]);
+				res.send(Send.s2(articles));
+			}
+	});
 });
 function getDecorate() {
 	return 'articleImg/img' + Math.ceil(Math.random() * 7) + '.png';
