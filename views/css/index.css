@@ -392,8 +392,8 @@ body {
   /*padding: 0 0 10px 0;*/
   white-space: normal;
   overflow: hidden;
-
   text-overflow: ellipsis;
+  line-height: 20px;
 }
 
 .right .search-wrap {
