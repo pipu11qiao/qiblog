@@ -71,7 +71,12 @@ router.post('/list', function (req, res) {
 //文章列表
 router.post('/visited', function (req, res) {
 	Article.findByIdAndUpdate(req.body._id,{$inc:{visited:1}},function (err) {
-		res.send(Send.s5('ok'));
+		if(err) {
+			res.send(Send.s5(err))
+		} else {
+			res.send(Send.s2('ok'));
+		}
+
 	});
 });
 //文章删除
