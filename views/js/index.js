@@ -91,7 +91,7 @@ Vue.component('pc-pagination', {
     vPageSize: {
       //每页数据条数
       type: Number,
-      default: 10,
+      default: 5,
       required: true
     },
     vTotalCount: {
@@ -103,7 +103,7 @@ Vue.component('pc-pagination', {
     vCountOfBtn: {
       //显示按钮数
       type: Number,
-      default: 9
+      default: 5
     }
   },
   computed: {
@@ -127,7 +127,6 @@ Vue.component('pc-pagination', {
   methods: {
     changePage: function (page) {
       if (page > 0 && page <= this.totalPage && page !== this.vCurPage) {
-        this.vCurPage = page;
         this.$emit('event1', page);
       }
     }
@@ -165,8 +164,9 @@ var vm=new Vue({
     selected: 0,
     articles: [],
     pageNum:1,
-    pageSize: 10,
+    pageSize: 5,
     searchText: '',
+    count: 0,
     detailArticle: {}
 	},
 	created:function () {
@@ -332,6 +332,10 @@ var vm=new Vue({
         }
       })
     },
+    pageChange: function (page) {
+		  this.pageNum = page;
+      this.getList();
+    },
     //获取列表
     getList:function () {
       var me=this;
@@ -343,6 +347,7 @@ var vm=new Vue({
         success:function (data) {
           //console.log(data);
           var data=data.data;
+          me.count = data.count;
           data.articles.forEach(function (item) {
             switch (item.type){
               case 0:

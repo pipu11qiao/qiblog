@@ -52,12 +52,20 @@ router.post('/list', function (req, res) {
 	var reg = new RegExp(search, 'i');
 	var queryObj = {$or: [{title: reg}, {content: reg}]};
 	//取得请求体对象
-	Article.find(queryObj).sort({updateTime: -1}).populate('user').exec(function (err, articles) {
-		if (err) {
-			res.send(Send.s5(err));
-		} else {
-			res.send(Send.s2({articles: articles}));
-		}
+	Article.find(queryObj).sort({updateTime: -1}).skip((pageNum-1) * pageSize).limit(pageSize).populate('user').exec(function (err, articles) {
+		Article.count({},function (err,count) {
+      if (err) {
+        res.send(Send.s5(err));
+      } else {
+        res.send(Send.s2({
+          articles: articles,
+          pageSize: pageSize,
+          pageNum: pageNum,
+          count: count
+        }));
+      }
+    });
+
 	});
 });
 //文章列表
@@ -66,6 +74,17 @@ router.post('/visited', function (req, res) {
 		res.send(Send.s5('ok'));
 	});
 });
+//文章删除
+router.post('/delete', function (req, res) {
+  Article.findByIdAndRemove(req.body._id,function (err) {
+    if (err) {
+      res.send(Send.s4('ok'));
+    } else {
+      res.send(Send.s2('ok'));
+    }
+  })
+});
+
 function getDecorate() {
 	return 'articleImg/img' + Math.ceil(Math.random() * 7) + '.png';
 }

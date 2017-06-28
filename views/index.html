@@ -115,7 +115,7 @@
                 </a>
             </ul>
             <!--分页-->
-            <pc-pagination ></pc-pagination>
+            <pc-pagination :v-cur-page="pageNum" :v-page-size="pageSize" :v-can-show="articles.length > 0" :v-total-count="count" @event1="pageChange" ></pc-pagination>
         </div>
         <!--发表文章-->
         <div class="add" v-show="curView==2" v-cloak="">
