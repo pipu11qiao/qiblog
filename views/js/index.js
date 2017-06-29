@@ -175,8 +175,10 @@ var vm=new Vue({
       type: 0,
     },
     ajaxType:0,
-    typeArr:['移动前端','Web前端','学无止境']
-
+    typeArr:['移动前端','Web前端','学无止境'],
+    messages:{
+		  content:''
+    },
 
 	},
 	created:function () {
@@ -410,14 +412,41 @@ var vm=new Vue({
       console.log(this.detailArticle);
       this.addArticle.title=this.detailArticle.title;
       this.addArticle.content=this.detailArticle.content;
-      console.log(this.detailArticle.type)
+      //console.log(this.detailArticle.type)
       this.addArticle.type=this.detailArticle.type
     },
     //切换导航
     changeType:function (type) {
       this.type=type;
       this.pageNum = 1;
+      this.curView=1;
       this.getList();
+    },
+    //留言列表展示
+    addMessageShow:function () {
+      this.curView=4;
+    },
+    //发布留言
+    addMessage:function () {
+      this.curView=5
+    },
+    //留言发布保存
+    saveMessage:function () {
+      var me=this;
+      var ajaxData={
+
+      };
+      $.ajax({
+        url:'/message/addMessage',
+        data:JSON.stringify(ajaxData),
+        contentType:'application/json',
+        type:'post',
+        success:function (data) {
+          console.log(data);
+          this.curView=4;
+          // me.getList();
+        }
+      })
     }
 	},
   computed: {

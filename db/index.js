@@ -31,5 +31,10 @@ var ArticleSchema = new mongoose.Schema({
 		ref: 'users'
 	}
 });
+var MessageSchema=new mongoose.Schema({
+  content: String,
+  createTime: Number,
+});
 exports.Article = mongoose.model('articles', ArticleSchema);
+exports.Message = mongoose.model('messages', MessageSchema);
 

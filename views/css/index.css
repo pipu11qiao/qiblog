@@ -338,9 +338,13 @@ body {
 }
 
 .content .list h3 a, .content .right h3 a {
-  color: #3472ef;
+  color: #000;
   margin-left: 25px;
 }
+.content .list h3 a:hover, .content .right h3 a:hover {
+  color: #3472ef;
+}
+
 
 .list li {
   width: 880px;
@@ -680,5 +684,27 @@ body {
 }
 .pagination .btn-group button:hover{
   background: rgb(113, 172, 233);
+}
+/*留言*/
+.list.message li{
+  height: 100px;
+}
+.list.message li .con{
+  width: 95%;
+}
+.list.message li .con p.text{
+  overflow: auto;
+}
+.add.addMessage{
+  min-height: 300px;
+}
+.add.addMessage .add-item{
+  height: 100%;
+}
+.add.addMessage .add-item textarea{
+  min-height: 200px;
+}
+.add.addMessage .articleSubmit{
+  margin-top: 10px;
 }
 

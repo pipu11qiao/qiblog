@@ -158,6 +158,38 @@
                 <button class="delete" v-show="isDelete" @click="deleteArticle">删除</button>
             </div>
         </div>
+        <!--留言列表-->
+        <div class="list message"  v-show="curView==4">
+            <h3>留言列表 <a href="javascript:;" v-if="isSign==1 " @click="addMessage" >发布留言</a></h3>
+            <ul>
+                <a href="javascript:;">
+                    <li v-for="(article,index) in articles ">
+                        <div class="con" >
+                            <div>
+                                <span><img :src="article.user.avatar" alt=""></span>
+                                <i class="name" v-text="article.user.username"></i><i v-text="article.updateTime" v-cloak="">发布时间：</i><i class="time"> </i>
+                            </div>
+                            <p class="text" v-text="article.contentFormat" v-cloak=""></p>
+                        </div>
+                    </li>
+                </a>
+            </ul>
+            <!--分页-->
+            <pc-pagination :v-cur-page="pageNum" :v-page-size="pageSize" :v-can-show="articles.length > 0" :v-total-count="count" @event1="pageChange" ></pc-pagination>
+        </div>
+        <!--发布留言-->
+        <div class="add addMessage" v-show="curView==5" v-cloak="">
+            <div class="add-item">
+                <p>留言内容</p>
+                <div >
+                <textarea type="text" name="content" id="messageContent" v-model="messages.content">
+
+                </textarea>
+                </div>
+            </div>
+            <button class="articleSubmit" @click="saveMessage">提交</button>
+
+        </div>
 
         <div class="right">
             <h3>站内搜索</h3>
@@ -167,7 +199,7 @@
             </div>
         </div>
         <div class="right">
-            <h3>最新留言 <a href="javascript:;" v-if="isSign">发布留言</a> </h3>
+            <h3>最新留言 <a href="javascript:;" v-if="isSign && curView!=4" @click="addMessage">发布留言</a><a href="javascript:;" @click="addMessageShow"  class="message-list" v-if="curView!=4" >留言列表</a> </h3>
             <div class="right-con">
                 <ul>
                     <li>
