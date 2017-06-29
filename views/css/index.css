@@ -140,6 +140,7 @@ body {
   width: 90px;
   text-align: center;
   cursor: pointer;
+
 }
 
 .nav li:after {
@@ -158,12 +159,22 @@ body {
 .nav li.odd.active {
   background: #b9d329;
 }
+.nav li.odd.active:after {
+  background: #b9d329;
+  top: 0;
+  transition: all .2s ease-in-out;
+}
 
 .nav li.even:after {
   background: #c0ebf7;
 }
 .nav li.even.active {
   background: #c0ebf7;
+}
+.nav li.even.active:after {
+  background: #c0ebf7;
+  top: 0;
+  transition: all .2s ease-in-out;
 }
 
 .nav li.odd {
@@ -198,8 +209,10 @@ body {
 
 .after-sign em {
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  overflow: hidden;
   vertical-align: middle;
   margin-right: 5px;
   line-height: 0;
@@ -307,6 +320,7 @@ body {
 .content .list {
   float: left;
   width: 880px;
+  min-height: 300px;
 }
 
 .content .right {

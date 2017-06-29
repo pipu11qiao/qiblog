@@ -27,3 +27,6 @@ exports.getDefineObj = function (obj,properties) {
 	});
 	return curObj;
 };
+exports.getDecorate=function() {
+  return 'articleImg/img' + Math.ceil(Math.random() * 7) + '.png';
+};

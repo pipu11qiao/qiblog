@@ -416,6 +416,7 @@ var vm=new Vue({
     //切换导航
     changeType:function (type) {
       this.type=type;
+      this.pageNum = 1;
       this.getList();
     }
 	},

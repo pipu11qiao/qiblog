@@ -9,6 +9,7 @@ var router = express.Router();
 var util = require('../util');
 var Send = util.Send;
 var md5 = util.md5;
+var getDecorate=util.getDecorate;
 var getDefineObj = util.getDefineObj;
 //注册 /user/signup
 //路径一定以/开头 模板路径一定不要以/开头
@@ -24,7 +25,7 @@ router.post('/signup', function (req, res) {
 	//取得请求体对象
 	var user = req.body;
 	user.password = md5(user.password);
-	user.avatar = 'https://www.gravatar.com/avatar/' + md5(user.email) + '?s=200';
+	user.avatar = getDecorate();
 	User.findOne({username: user.username}, function (err, oldUser) {
 		if (err) {//如果查询过程出错了，则error有值
 			res.send(Send.s5(err));

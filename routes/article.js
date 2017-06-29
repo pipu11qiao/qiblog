@@ -73,7 +73,7 @@ router.post('/list', function (req, res) {
 	var reg = new RegExp(search, 'i');
 	var queryObj = {$or: [{title: reg}, {content: reg}]};
   if(type !== '') {
-  	queryObj.$or.push({type: type});
+  	queryObj.type = type;
   }
 
   //取得请求体对象
