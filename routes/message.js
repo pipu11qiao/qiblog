@@ -44,9 +44,9 @@ router.post('/list', function (req, res) {
 	var pageSize = Math.floor(req.body.pageSize);
 	//取得请求体对象
 	Message.find({}).sort({createTime: -1}).skip((pageNum - 1) * pageSize).limit(pageSize).populate('user').exec(function (err, messages) {
-	  console.log(messages);
+
 		Message.count({}, function (err, count) {
-		  console.log(messages);
+
 			if (err) {
 				res.send(Send.s5(err));
 			} else {
