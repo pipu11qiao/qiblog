@@ -155,8 +155,14 @@ body {
 .nav li.odd:after {
   background: #b9d329;
 }
+.nav li.odd.active {
+  background: #b9d329;
+}
 
 .nav li.even:after {
+  background: #c0ebf7;
+}
+.nav li.even.active {
   background: #c0ebf7;
 }
 
@@ -640,6 +646,9 @@ body {
 .pagination .btn{
   width: 60px;
   height: 21px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #e7e7e9;
 }
 .pagination .btn-group{
   float: right;
@@ -651,5 +660,11 @@ body {
 .pagination .inlineBlock{
   float: right;
   margin-right: 10px;
+}
+.pagination .btn-group button.active{
+  background: rgb(113, 172, 233);
+}
+.pagination .btn-group button:hover{
+  background: rgb(113, 172, 233);
 }
 

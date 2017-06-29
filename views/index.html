@@ -70,10 +70,10 @@
             </div>
             <div class="nav">
                 <ul class="nav-list">
-                    <li class="odd"><a href="#">首页</a></li>
-                    <li class="even nav-con" @click="changeType"><a href="#">移动前端</a></li>
-                    <li class="odd nav-con" @click="changeType"><a href="#">Web前端</a></li>
-                    <li class="even nav-con" @click="changeType"><a href="#">学无止境</a></li>
+                    <li class="odd" :class="{'active': type===''}"  @click="changeType('')"><a href="#" >首页</a></li>
+                    <li class="even nav-con" :class="{'active': type===0}" @click="changeType(0)"><a href="#">移动前端</a></li>
+                    <li class="odd nav-con" :class="{'active': type===1}" @click="changeType(1)"><a href="#">Web前端</a></li>
+                    <li class="even nav-con" :class="{'active': type===2}" @click="changeType(2)"><a href="#">学无止境</a></li>
                     <li class="odd"><a href="#">个人日记</a></li>
                     <li class="even"><a href="#">留言板</a></li>
                 </ul>
@@ -107,7 +107,7 @@
                             <p class="title" v-text="article.title" v-cloak=""></p>
                             <div>
                                 <span><img :src="article.user.avatar" alt=""></span>
-                                <i class="name" v-text="article.user.username"></i><i v-text="article.updateTime" v-cloak="">发布时间：</i><i class="time"> </i><i>分类：</i><i class="type" v-text="article.type" v-cloak=""></i>
+                                <i class="name" v-text="article.user.username"></i><i v-text="article.updateTime" v-cloak="">发布时间：</i><i class="time"> </i><i>分类：</i><i class="type" v-text="typeArr[article.type]" v-cloak=""></i>
                             </div>
                             <p class="text" v-text="article.contentFormat" v-cloak=""></p>
                         </div>

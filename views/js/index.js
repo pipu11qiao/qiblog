@@ -103,7 +103,7 @@ Vue.component('pc-pagination', {
     vCountOfBtn: {
       //显示按钮数
       type: Number,
-      default: 5
+      default: 9
     }
   },
   computed: {
@@ -154,7 +154,6 @@ var app = {
 // 开始
 app.init();
 
-
 var vm=new Vue({
 	el:'#wrapper',
 	data:{
@@ -175,7 +174,8 @@ var vm=new Vue({
       content:'',
       type: 0,
     },
-    ajaxType:0
+    ajaxType:0,
+    typeArr:['移动前端','Web前端','学无止境']
 
 
 	},
@@ -347,6 +347,9 @@ var vm=new Vue({
           //console.log(data);
           me.curView=1;
           me.getList();
+          me.addArticle.title='';
+          me.addArticle.content='';
+          me.addArticle.type=0
         }
       })
     },
@@ -367,16 +370,6 @@ var vm=new Vue({
           var data=data.data;
           me.count = data.count;
           data.articles.forEach(function (item) {
-            switch (item.type){
-              case 0:
-                item.type='移动前端';
-                break;
-              case 1:
-                item.type='Web前端';
-                break;
-              default:
-                item.type='学无止境'
-            }
             item.updateTime = new Date(-(-item.updateTime)).Format('yyyy年MM月dd日');
             item.contentFormat = contentFormat(item.markdown);
           });
@@ -417,18 +410,13 @@ var vm=new Vue({
       console.log(this.detailArticle);
       this.addArticle.title=this.detailArticle.title;
       this.addArticle.content=this.detailArticle.content;
-      this.addArticle.content=this.detailArticle.type
+      console.log(this.detailArticle.type)
+      this.addArticle.type=this.detailArticle.type
     },
     //切换导航
-    changeType:function () {
-		  var curType= $('.nav-list >.nav-con> a').html();
-      if(curType=='移动前端'){
-        this.type=0
-      }else if(curType=='Web前端'){
-        this.type=1
-      }else if(curType=='学无止境'){
-        this.type=2
-      }
+    changeType:function (type) {
+      this.type=type;
+      this.getList();
     }
 	},
   computed: {
