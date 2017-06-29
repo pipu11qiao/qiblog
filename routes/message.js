@@ -8,8 +8,7 @@ var util = require('../util');
 var Send = util.Send;
 
 //文章增加
-router.post('/addMessage', checkLogin, function (req, res) {
-  console.log(req);
+router.post('/add', checkLogin, function (req, res) {
   //取得请求体对象
   var user = req.session.user;
   var curMessage = req.body;

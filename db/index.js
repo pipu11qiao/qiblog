@@ -31,10 +31,18 @@ var ArticleSchema = new mongoose.Schema({
 		ref: 'users'
 	}
 });
+
+exports.Article = mongoose.model('articles', ArticleSchema);
+
 var MessageSchema=new mongoose.Schema({
   content: String,
   createTime: Number,
+	user: {
+  	type: ObjectId,
+		ref: 'users'
+	}
 });
-exports.Article = mongoose.model('articles', ArticleSchema);
+
+
 exports.Message = mongoose.model('messages', MessageSchema);
 

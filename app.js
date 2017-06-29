@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/user');
 var articles = require('./routes/article');
+var messages = require('./routes/message');
 
 // session relative
 var session = require('express-session');// req.session 依赖cookie
@@ -42,6 +43,7 @@ app.use(session({
 app.use('/', index);
 app.use('/users', users);
 app.use('/articles', articles);
+app.use('/messages',messages);
 
 // 接口过滤
 
