@@ -69,11 +69,16 @@ router.post('/list', function (req, res) {
   var search = req.body.search;
   var pageNum = req.body.pageNum;
   var pageSize = req.body.pageSize;
-  var reg = new RegExp(search, 'i');
-  var queryObj = {$or: [{title: reg}, {content: reg}]};
+  var type = req.body.type;
+	var reg = new RegExp(search, 'i');
+	var queryObj = {$or: [{title: reg}, {content: reg}]};
+  if(type !== '') {
+  	queryObj.$or.push({type: type});
+  }
+
   //取得请求体对象
   Article.find(queryObj).sort({updateTime: -1}).skip((pageNum - 1) * pageSize).limit(pageSize).populate('user').exec(function (err, articles) {
-    Article.count({}, function (err, count) {
+    Article.count(queryObj, function (err, count) {
       if (err) {
         res.send(Send.s5(err));
       } else {
