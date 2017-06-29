@@ -175,7 +175,8 @@
                 </a>
             </ul>
             <!--分页-->
-            <pc-pagination :v-cur-page="pageNum" :v-page-size="pageSize" :v-can-show="articles.length > 0" :v-total-count="count" @event1="pageChange" ></pc-pagination>
+            <pc-pagination v-if="curView==1" :v-cur-page="pageNum" :v-page-size="pageSize" :v-can-show="articles.length > 0" :v-total-count="count" @event1="pageChange" ></pc-pagination>
+          <pc-pagination v-if="curView==4" :v-cur-page="pageMessageNum" :v-page-size="pageMessageSize" :v-can-show="messages.length > 0" :v-total-count="count" @event1="pageMessageChange" ></pc-pagination>
         </div>
         <!--发布留言-->
         <div class="add addMessage" v-show="curView==5" v-cloak="">
@@ -194,28 +195,22 @@
         <div class="right">
             <h3>站内搜索</h3>
             <div class="search-wrap">
-                <input type="text" class="search-value" v-model="searchText" @keydown.enter="search" placeholder="请输入搜索内容">
+                <input type="text" class="search-value" v-model="searchText" @keydown.enter="search" placeholder="请输入搜索文章关键词">
                 <input @click="search" class="search-btn" type="button" value="">
             </div>
         </div>
         <div class="right">
-            <h3>最新留言 <a href="javascript:;" v-if="isSign && curView!=4" @click="addMessage">发布留言</a><a href="javascript:;" @click="addMessageShow"  class="message-list" v-if="curView!=4" >留言列表</a> </h3>
+            <h3>最新留言 <a href="javascript:;" v-if="isSign && curView!=4" @click="addMessage">发布留言</a><a href="javascript:;" @click="showMessageList"  class="message-list" v-if="curView!=4" >留言列表</a> </h3>
             <div class="right-con">
                 <ul>
-                    <li>
-                        <div class="pic"><img src="img/icon.png" alt=""></div>
+                    <li v-for="message in indexMessage">
+                        <div class="pic"><img :src="message.user.avatar" alt=""></div>
                         <div class="right-list">
-                            <p class="one"> <b>哈利波特</b> <i>1月1日</i></p>
-                            <p class="right-text">对网站整体风格进行改版，并对代码进行重新优化构建。增加网站站内搜索功能！</p>
+                            <p class="one"> <b v-text="message.user.username" v-cloak=""></b> <i v-text="message.createTime"></i></p>
+                            <p class="right-text" v-text="message.content"></p>
                         </div>
                     </li>
-                    <li>
-                        <div class="pic"><img src="img/icon.png" alt=""></div>
-                        <div class="right-list">
-                            <p class="one"> <b>哈利波特</b> <i>1月1日</i></p>
-                            <p class="right-text">对网站整体风格进行改版，并对代码进行重新优化构建。增加网站站内搜索功能！</p>
-                        </div>
-                    </li>
+
                 </ul>
             </div>
         </div>

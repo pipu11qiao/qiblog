@@ -164,6 +164,9 @@ var vm=new Vue({
     articles: [],
     pageNum:1,
     pageSize: 5,
+    pageMessageNum:1,
+    pageMessageSize:5,
+    pageIndexSize: 10,
     searchText: '',
     count: 0,
     detailArticle: {},
@@ -180,6 +183,7 @@ var vm=new Vue({
 		  content:''
     },
     messages:[],
+    indexMessage:[]
 
 	},
 	created:function () {
@@ -191,6 +195,7 @@ var vm=new Vue({
       this.avatar=data.avatar;
 		}
 		this.getList();
+		this.getIndexList();
   },
 	methods:{
 		//注册登录弹窗
@@ -383,7 +388,9 @@ var vm=new Vue({
     //所有文章
     search:function () {
 		  this.pageNum = 1;
+      this.curView=1;
       this.getList();
+
     },
     //删除文章
     deleteArticle:function () {
@@ -421,11 +428,9 @@ var vm=new Vue({
       this.type=type;
       this.pageNum = 1;
       this.curView=1;
+      this.searchText='';
       this.getList();
-    },
-    //留言列表展示
-    addMessageShow:function () {
-      this.curView=4;
+
     },
     //发布留言
     addMessage:function () {
@@ -442,14 +447,15 @@ var vm=new Vue({
         type:'post',
         success:function (data) {
           console.log(data);
-          this.curView=4;
-          //me.getMessageList();
+          me.getMessageList();
+          me.getIndexList();
           me.messagesAdd.content='';
         }
       })
     },
     //留言列表
     getMessageList:function () {
+      this.curView=4;
       var me=this;
       $.ajax({
         url:'/messages/list',
@@ -461,9 +467,35 @@ var vm=new Vue({
           var data=data.data;
           me.count = data.count;
           data.messages.forEach(function (item) {
-            item.updateTime = new Date(-(-item.updateTime)).Format('yyyy年MM月dd日');
+            item.createTime= new Date(-(-item.createTime)).Format('yyyy年MM月dd日');
           });
           me.messages=data.messages;
+        }
+      })
+    },
+    showMessageList: function () {
+      this.pageMessageNum = 1;
+      this.getMessageList();
+    },
+    pageMessageChange: function (page) {
+      this.pageMessageNum = page;
+      this.getMessageList();
+    },
+    //首页留言列表
+    getIndexList:function () {
+      var me=this;
+      $.ajax({
+        url:'/messages/index',
+        data:JSON.stringify(me.listIndexData),
+        contentType: 'application/json',
+        type:'post',
+        success:function (data) {
+          console.log(data);
+          var data=data.data;
+          data.messages.forEach(function (item) {
+            item.createTime= new Date(-(-item.createTime)).Format('yyyy年MM月dd日');
+          });
+          me.indexMessage=data.messages;
         }
       })
     }
@@ -479,8 +511,13 @@ var vm=new Vue({
     },
     listMessageData:function () {
       var obj = {};
-      obj.pageNum = this.pageNum;
-      obj.pageSize = this.pageSize;
+      obj.pageNum = this.pageMessageNum;
+      obj.pageSize = this.pageMessageSize;
+      return obj;
+    },
+    listIndexData:function () {
+      var obj = {};
+      obj.pageSize = this.pageIndexSize;
       return obj;
     }
 
