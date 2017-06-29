@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "mac": "DEBUG=qiblog:* node ./bin/www",
+    "start": "DEBUG=qiblog:* node ./bin/www",
     "win": "set debug=qiblog:* & node ./bin/www"
   },
   "keywords": [],
