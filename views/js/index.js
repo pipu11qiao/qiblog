@@ -169,6 +169,7 @@ var vm=new Vue({
     count: 0,
     detailArticle: {},
     isDelete:false,
+    type:'',
     addArticle:{
 		  title:'',
       content:'',
@@ -417,6 +418,17 @@ var vm=new Vue({
       this.addArticle.title=this.detailArticle.title;
       this.addArticle.content=this.detailArticle.content;
       this.addArticle.content=this.detailArticle.type
+    },
+    //切换导航
+    changeType:function () {
+		  var curType= $('.nav-list >.nav-con> a').html();
+      if(curType=='移动前端'){
+        this.type=0
+      }else if(curType=='Web前端'){
+        this.type=1
+      }else if(curType=='学无止境'){
+        this.type=2
+      }
     }
 	},
   computed: {
@@ -425,6 +437,7 @@ var vm=new Vue({
 	    obj.pageNum = this.pageNum;
 	    obj.pageSize = this.pageSize;
 	    obj.search = this.searchText.trim();
+	    obj.type=this.type;
       return obj;
     },
 
