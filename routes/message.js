@@ -24,3 +24,5 @@ router.post('/addMessage', checkLogin, function (req, res) {
     }
   })
 });
+
+module.exports = router;
