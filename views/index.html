@@ -163,13 +163,13 @@
             <h3>留言列表 <a href="javascript:;" v-if="isSign==1 " @click="addMessage" >发布留言</a></h3>
             <ul>
                 <a href="javascript:;">
-                    <li v-for="(article,index) in articles ">
+                    <li v-for="(message,index) in messages ">
                         <div class="con" >
                             <div>
-                                <span><img :src="article.user.avatar" alt=""></span>
-                                <i class="name" v-text="article.user.username"></i><i v-text="article.updateTime" v-cloak="">发布时间：</i><i class="time"> </i>
+                                <span><img :src="message.user.avatar" alt=""></span>
+                                <i class="name" v-text="message.user.username"></i><i v-text="message.createTime" v-cloak="">发布时间：</i><i class="time"> </i>
                             </div>
-                            <p class="text" v-text="article.contentFormat" v-cloak=""></p>
+                            <p class="text" v-text="message.content" v-cloak=""></p>
                         </div>
                     </li>
                 </a>
@@ -182,7 +182,7 @@
             <div class="add-item">
                 <p>留言内容</p>
                 <div >
-                <textarea type="text" name="content" id="messageContent" v-model="messages.content">
+                <textarea type="text" name="content" id="messageContent" v-model="messagesAdd.content">
 
                 </textarea>
                 </div>

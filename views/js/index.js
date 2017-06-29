@@ -176,9 +176,10 @@ var vm=new Vue({
     },
     ajaxType:0,
     typeArr:['移动前端','Web前端','学无止境'],
-    messages:{
+    messagesAdd:{
 		  content:''
     },
+    messages:[],
 
 	},
 	created:function () {
@@ -433,18 +434,36 @@ var vm=new Vue({
     //留言发布保存
     saveMessage:function () {
       var me=this;
-      var ajaxData={
-
-      };
+      var ajaxData=$.extend({},this.messagesAdd);
       $.ajax({
-        url:'/message/addMessage',
+        url:'/messages/add',
         data:JSON.stringify(ajaxData),
         contentType:'application/json',
         type:'post',
         success:function (data) {
           console.log(data);
           this.curView=4;
-          // me.getList();
+          //me.getMessageList();
+          me.messagesAdd.content='';
+        }
+      })
+    },
+    //留言列表
+    getMessageList:function () {
+      var me=this;
+      $.ajax({
+        url:'/messages/list',
+        data:JSON.stringify(me.listMessageData),
+        contentType: 'application/json',
+        type:'post',
+        success:function (data) {
+          console.log(data);
+          var data=data.data;
+          me.count = data.count;
+          data.messages.forEach(function (item) {
+            item.updateTime = new Date(-(-item.updateTime)).Format('yyyy年MM月dd日');
+          });
+          me.messages=data.messages;
         }
       })
     }
@@ -458,6 +477,12 @@ var vm=new Vue({
 	    obj.type=this.type;
       return obj;
     },
+    listMessageData:function () {
+      var obj = {};
+      obj.pageNum = this.pageNum;
+      obj.pageSize = this.pageSize;
+      return obj;
+    }
 
   }
 
