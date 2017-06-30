@@ -530,7 +530,7 @@ body {
 }
 
 .detail-list .detail-con {
-  width: 800px;
+  /*width: 800px;*/
   margin: 10px auto;
   font-size: 14px;
   color: #333;
