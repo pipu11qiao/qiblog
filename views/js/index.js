@@ -389,6 +389,7 @@ var vm=new Vue({
     search:function () {
 		  this.pageNum = 1;
       this.curView=1;
+      this.type='';
       this.getList();
 
     },
@@ -426,11 +427,14 @@ var vm=new Vue({
     //切换导航
     changeType:function (type) {
       this.type=type;
+		  if(this.type===5){
+        this.getMessageList();
+      }else {
+        this.curView=1;
+        this.getList();
+      }
       this.pageNum = 1;
-      this.curView=1;
       this.searchText='';
-      this.getList();
-
     },
     //发布留言
     addMessage:function () {
@@ -456,6 +460,7 @@ var vm=new Vue({
     //留言列表
     getMessageList:function () {
       this.curView=4;
+      this.type=5;
       var me=this;
       $.ajax({
         url:'/messages/list',
@@ -474,6 +479,7 @@ var vm=new Vue({
       })
     },
     showMessageList: function () {
+		  this.type=5;
       this.pageMessageNum = 1;
       this.getMessageList();
     },
