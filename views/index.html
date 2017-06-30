@@ -6,6 +6,7 @@
     <link type="image/x-icon" rel="icon" href="img/icon.png">
     <link rel="stylesheet" href="css/reset.min.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/markdown.css">
 </head>
 <body>
 <div id="wrapper">
@@ -152,7 +153,7 @@
             <div class="detail-time">
                 <i>编辑时间：</i><i class="time" v-text="detailArticle.updateTime"></i><i>浏览量：</i><i class="number" v-text="detailArticle.visited"></i><i>作者：</i><i class="author" v-text="detailArticle.user.username"></i>
             </div>
-            <div class="detail-con" v-html="detailArticle.markdown"></div>
+            <div class="detail-con markdown-body" v-html="detailArticle.markdown"></div>
             <div class="modify-btn">
                 <button class="modify" v-show="isDelete && isSign" @click="update(1)">修改</button>
                 <button class="delete" v-show="isDelete && isSign" @click="deleteArticle">删除</button>
